@@ -3,9 +3,9 @@
  * @param xs bigints
  */
 function max(...xs: BigInt[]): BigInt {
-  var m = null;
+  var a = null;
   for(var x of xs)
-    m = m>x? m : x;
-  return m;
+    a = a>x? a : x;
+  return a;
 }
 export default max;
