@@ -1,5 +1,5 @@
 /**
- * Indicates whether sign is +ve, -ve, or 0.
+ * Gives sign of value.
  * @param x a bigint
  * @returns +ve: 1n, -ve: -1n, 0: 0n
  */
