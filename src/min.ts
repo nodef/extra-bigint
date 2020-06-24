@@ -2,7 +2,7 @@
  * Gives smallest value.
  * @param xs bigints
  */
-function min(...xs: BigInt[]): BigInt {
+function min(...xs: bigint[]): bigint {
   var a = null;
   for(var x of xs)
     a = a<x? a : x;

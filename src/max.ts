@@ -2,7 +2,7 @@
  * Gives largest value.
  * @param xs bigints
  */
-function max(...xs: BigInt[]): BigInt {
+function max(...xs: bigint[]): bigint {
   var a = null;
   for(var x of xs)
     a = a>x? a : x;
