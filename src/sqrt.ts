@@ -4,11 +4,12 @@
  */
 function sqrt(x: bigint): bigint {
   if(x<0n) return null;
-  var a = x, b = 0n, c = 0n;
-  while(a>0n && a!==c) {
-    c = b; b = a;
-    a = (b + (x-1n)/b)/2n;
+  if(x===0n) return 0n;
+  var a = x, b = x+1n;
+  while(a<b) {
+    b = a;
+    a = (b + x/b)/2n;
   }
-  return a;
+  return b;
 }
 export default sqrt;
