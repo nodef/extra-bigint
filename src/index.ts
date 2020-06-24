@@ -1,6 +1,7 @@
 export {default as abs} from './abs';
 export {default as cbrt} from './cbrt';
 export {default as compare} from './compare';
+export {default as hypot} from './hypot';
 export {default as isPrime} from './isPrime';
 export {default as max} from './max';
 export {default as min} from './min';
