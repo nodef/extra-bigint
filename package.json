@@ -1,0 +1,23 @@
+{
+  "name": "extra-bigint",
+  "version": "0.0.1",
+  "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodef/extra-bigint.git"
+  },
+  "keywords": [
+    "extra",
+    "bigint"
+  ],
+  "author": "wolfram77@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodef/extra-bigint/issues"
+  },
+  "homepage": "https://github.com/nodef/extra-bigint#readme"
+}
