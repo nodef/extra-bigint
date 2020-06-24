@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
   "main": "index.js",
   "module": "index.mjs",
@@ -22,7 +22,16 @@
   },
   "keywords": [
     "extra",
-    "bigint"
+    "bigint",
+    "abs",
+    "cbrt",
+    "compare",
+    "isPrime",
+    "max",
+    "min",
+    "root",
+    "sign",
+    "sqrt"
   ],
   "author": "wolfram77@gmail.com",
   "license": "MIT",
