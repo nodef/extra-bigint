@@ -4,6 +4,7 @@ export {default as ceilDiv} from './ceilDiv';
 export {default as compare} from './compare';
 export {default as cubicMean} from './cubicMean';
 export {default as floorDiv} from './floorDiv';
+export {default as harmonicMean} from './harmonicMean';
 export {default as hypot} from './hypot';
 export {default as isPrime} from './isPrime';
 export {default as log10} from './log10';
