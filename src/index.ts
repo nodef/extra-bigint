@@ -1,4 +1,5 @@
 export {default as abs} from './abs';
+export {default as arithmeticMean} from './arithmeticMean';
 export {default as cbrt} from './cbrt';
 export {default as ceilDiv} from './ceilDiv';
 export {default as compare} from './compare';
