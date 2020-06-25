@@ -17,6 +17,7 @@ export {default as mod} from './mod';
 export {default as modp} from './modp';
 export {default as product} from './product';
 export {default as quadriaticMean} from './quadriaticMean';
+export {default as range} from './range';
 export {default as rem} from './rem';
 export {default as root} from './root';
 export {default as rootMeanSquare} from './rootMeanSquare';
