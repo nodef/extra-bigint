@@ -7,6 +7,7 @@ export {default as log10} from './log10';
 export {default as log2} from './log2';
 export {default as max} from './max';
 export {default as min} from './min';
+export {default as mod} from './mod';
 export {default as modp} from './modp';
 export {default as rem} from './rem';
 export {default as root} from './root';
