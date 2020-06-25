@@ -11,6 +11,7 @@ export {default as harmonicMean} from './harmonicMean';
 export {default as hcf} from './hcf';
 export {default as hypot} from './hypot';
 export {default as isPrime} from './isPrime';
+export {default as lcm} from './lcm';
 export {default as log10} from './log10';
 export {default as log2} from './log2';
 export {default as max} from './max';
