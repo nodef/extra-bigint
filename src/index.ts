@@ -8,6 +8,7 @@ export {default as floorDiv} from './floorDiv';
 export {default as gcd} from './gcd';
 export {default as geometricMean} from './geometricMean';
 export {default as harmonicMean} from './harmonicMean';
+export {default as hcf} from './hcf';
 export {default as hypot} from './hypot';
 export {default as isPrime} from './isPrime';
 export {default as log10} from './log10';
