@@ -15,3 +15,4 @@ export {default as rem} from './rem';
 export {default as root} from './root';
 export {default as sign} from './sign';
 export {default as sqrt} from './sqrt';
+export {default as sum} from './sum';
