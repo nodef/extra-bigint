@@ -4,9 +4,10 @@ import root from './root';
 /**
  * Gives generalized mean of values.
  * @param xs bigints
+ * @param p exponent (0: geometric, 1: arithmetic, ...) [1]
  */
 function mean(xs: bigint[], p: bigint=1n): bigint {
-  if(p===0n) return geometricMean(...xs);
+  if(p<=0n) return geometricMean(...xs);
   var X = BigInt(xs.length);
   var a = 0n;
   for(var x of xs)
