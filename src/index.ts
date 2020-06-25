@@ -11,6 +11,7 @@ export {default as max} from './max';
 export {default as min} from './min';
 export {default as mod} from './mod';
 export {default as modp} from './modp';
+export {default as product} from './product';
 export {default as rem} from './rem';
 export {default as root} from './root';
 export {default as sign} from './sign';
