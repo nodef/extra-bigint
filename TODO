@@ -17,3 +17,9 @@ FROM NUMBER
 - significantDigits
 - toRoman
 - toScientific
+
+NUMBER?
+- bigint: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
+- mean: https://en.wikipedia.org/wiki/Mean
+- pow: https://stackoverflow.com/questions/23575218/convert-decimal-number-to-fraction-in-javascript-or-closest-fraction
+- math -> number: https://github.com/nodef/extra-math/tree/master/src
