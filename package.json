@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
   "main": "index.js",
   "module": "index.mjs",
@@ -24,22 +24,34 @@
     "extra",
     "bigint",
     "abs",
+    "arithmeticMean",
     "cbrt",
     "ceilDiv",
     "compare",
+    "cubicMean",
     "floorDiv",
+    "gcd",
+    "geometricMean",
+    "harmonicMean",
+    "hcf",
     "hypot",
     "isPrime",
+    "lcm",
     "log10",
     "log2",
     "max",
     "min",
     "mod",
     "modp",
+    "product",
+    "quadriaticMean",
+    "range",
     "rem",
     "root",
+    "rootMeanSquare",
     "sign",
-    "sqrt"
+    "sqrt",
+    "sum"
   ],
   "author": "wolfram77@gmail.com",
   "license": "MIT",
@@ -48,6 +60,6 @@
   },
   "homepage": "https://github.com/nodef/extra-bigint#readme",
   "devDependencies": {
-    "extra-build": "^1.0.188"
+    "extra-build": "^1.1.20"
   }
 }
