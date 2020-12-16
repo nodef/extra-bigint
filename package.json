@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
   "main": "index.js",
   "module": "index.mjs",
@@ -60,6 +60,6 @@
   },
   "homepage": "https://github.com/nodef/extra-bigint#readme",
   "devDependencies": {
-    "extra-build": "^1.1.27"
+    "extra-build": "^1.1.28"
   }
 }
