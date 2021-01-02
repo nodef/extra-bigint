@@ -4,8 +4,7 @@
  * @param y divisor
  */
 function ceilDiv(x: bigint, y: bigint): bigint {
-  var a = x/y;
   if(y<0n) { x=-x; y=-y; }
-  return x <= a*y? a : a+1n;
+  return x<=0n ? (x/y) : ((x-1n)/y)+1n;
 }
 export default ceilDiv;
