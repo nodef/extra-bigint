@@ -1,3 +1,5 @@
+export {default as is} from './is';
+export {default as isPrime} from './isPrime';
 export {default as abs} from './abs';
 export {default as arithmeticMean} from './arithmeticMean';
 export {default as cbrt} from './cbrt';
@@ -10,7 +12,6 @@ export {default as geometricMean} from './geometricMean';
 export {default as harmonicMean} from './harmonicMean';
 export {default as hcf} from './hcf';
 export {default as hypot} from './hypot';
-export {default as isPrime} from './isPrime';
 export {default as lcm} from './lcm';
 export {default as log10} from './log10';
 export {default as log2} from './log2';

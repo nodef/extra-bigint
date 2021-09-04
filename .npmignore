@@ -1,14 +1,17 @@
 # Parts
 src/
 wiki/
+tests/
 .gitmodules
 
 # Build
 build/
-build.js
+coverage/
 .travis.yml
+.coveralls.yml
 tsconfig.json
 rollup.config.js
+jestconfig.json
 
 # Others
 unused/

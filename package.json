@@ -1,7 +1,8 @@
 {
   "name": "extra-bigint",
-  "version": "0.0.58",
+  "version": "0.0.60",
   "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
+  "sideEffects": false,
   "main": "index.js",
   "module": "index.mjs",
   "exports": {
@@ -9,57 +10,28 @@
     "import": "./index.mjs"
   },
   "scripts": {
-    "einit": "ebuild init",
-    "ecode": "ebuild update --docs false",
-    "eupdate": "ebuild update",
-    "escatter": "ebuild scatter",
-    "test": "exit"
+    "test": "exit",
+    "build": "ebuild export+main+example+wiki+readme --wikiExample=false --asciinema=false",
+    "deploy": "ebuild jsdoc+export+main+meta+example+github+publish"
   },
   "runkitExampleFilename": "example.js",
+  "keywords": [
+    "extra",
+    "bigint",
+    "big",
+    "integer"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodef/extra-bigint.git"
   },
-  "keywords": [
-    "extra",
-    "bigint",
-    "abs",
-    "arithmeticMean",
-    "cbrt",
-    "ceilDiv",
-    "compare",
-    "cubicMean",
-    "floorDiv",
-    "gcd",
-    "geometricMean",
-    "harmonicMean",
-    "hcf",
-    "hypot",
-    "isPrime",
-    "lcm",
-    "log10",
-    "log2",
-    "max",
-    "min",
-    "mod",
-    "modp",
-    "product",
-    "quadriaticMean",
-    "range",
-    "rem",
-    "root",
-    "rootMeanSquare",
-    "sign",
-    "sqrt",
-    "sum"
-  ],
-  "author": "wolfram77@gmail.com",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nodef/extra-bigint/issues"
   },
   "homepage": "https://github.com/nodef/extra-bigint#readme",
+  "author": "wolfram77@gmail.com",
+  "license": "MIT",
   "devDependencies": {
-    "extra-build": "^1.1.28"
+    "extra-build": "^1.4.3"
   }
 }
