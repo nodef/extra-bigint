@@ -1,5 +1,8 @@
+import log2 from './log2';
+
 function sqrtPos(x: bigint): bigint {
-  var a = x, b = x+1n;
+  const initialGuess = 1n << (log2(x) / 2n + 1n);
+  var a = initialGuess, b = a+1n;
   while(a<b) {
     b = a;
     a = (b + x/b)/2n;
