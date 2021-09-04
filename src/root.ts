@@ -1,5 +1,7 @@
+import log2 from './log2';
+
 function rootPos(x: bigint, n: bigint): bigint {
-  const initialGuess = 1n << BigInt(Math.ceil(x.toString(16).length * 4 / Number(n)));
+  const initialGuess = 1n << ((log2(x) / n) + 1n);
   if (initialGuess === 2n) {
     return 1n;
   }
