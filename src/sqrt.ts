@@ -1,5 +1,6 @@
 function sqrtPos(x: bigint): bigint {
-  var a = x, b = x+1n;
+  const initialGuess = 1n << BigInt(x.toString(16).length * 2);
+  var a = initialGuess, b = a+1n;
   while(a<b) {
     b = a;
     a = (b + x/b)/2n;
