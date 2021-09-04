@@ -1,5 +1,9 @@
 function rootPos(x: bigint, n: bigint): bigint {
-  var a = x, b = x+1n, m = n-1n;
+  const initialGuess = 1n << BigInt(Math.ceil(x.toString(16).length * 4 / Number(n)));
+  if (initialGuess === 2n) {
+    return 1n;
+  }
+  var a = initialGuess, b = a+1n, m = n-1n;
   while(a<b) {
     b = a;
     a = (m*b + x/b**m)/n;
