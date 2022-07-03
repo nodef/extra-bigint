@@ -64,29 +64,32 @@ bigint.mean(1n, 7n, 8n);
 | [is] | Check if value is a bigint. |
 | [isPrime] | Check if a bigint is prime. |
 | [compare] | Compare two bigints. |
-|   |   |
+|  |  |
 | [abs] | Get the absolute of a bigint. |
 | [sign] | Get the sign of a bigint. |
-|   |   |
+|  |  |
 | [floorDiv] | Calculate the floor division of bigints (\\). |
 | [ceilDiv] | Calculate the floor division of bigints. |
-|   |   |
+|  |  |
 | [rem] | Find the remainder of x/y with sign of x (truncated division). |
 | [mod] | Find the remainder of x/y with sign of y (floored division). |
 | [modp] | Find the remainder of x/y with +ve sign (euclidean division). |
-|   |   |
+|  |  |
 | [sqrt] | Find the square root of a bigint. |
 | [cbrt] | Find the cube root of a bigint. |
 | [root] | Find the nth root of a bigint. |
-|   |   |
+|  |  |
 | [gcd] | Find the greatest common divisor of bigints. |
 | [lcm] | Find the least common multiple of bigints. |
-|   |   |
+|  |  |
+| [isPow2] | Check if bigint is a power-of-2. |
+| [prevPow2] | Find previous power-of-2 of a bigint. |
+| [nextPow2] | Find next power-of-2 of a bigint. |
 | [log2] | Find the base-2 logarithm of a bigint. |
 | [log10] | Find the base-10 logarithm of a bigint. |
-|   |   |
+|  |  |
 | [hypot] | Find the length of hypotenuse. |
-|   |   |
+|  |  |
 | [sum] | Find the sum of bigints (Σ). |
 | [product] | Find the product of bigints (∏). |
 | [min] | Find the smallest bigint. |
@@ -134,3 +137,6 @@ bigint.mean(1n, 7n, 8n);
 [harmonicMean]: https://nodef.github.io/extra-bigint/modules.html#harmonicMean
 [quadriaticMean]: https://nodef.github.io/extra-bigint/modules.html#quadriaticMean
 [cubicMean]: https://nodef.github.io/extra-bigint/modules.html#cubicMean
+[isPow2]: https://nodef.github.io/extra-bigint/modules.html#isPow2
+[prevPow2]: https://nodef.github.io/extra-bigint/modules.html#prevPow2
+[nextPow2]: https://nodef.github.io/extra-bigint/modules.html#nextPow2

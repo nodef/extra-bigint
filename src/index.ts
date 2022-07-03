@@ -242,8 +242,40 @@ export function lcm(...xs: bigint[]): bigint {
 
 
 
-// LOGARITHM
-// ---------
+// POWER / LOGARITHM
+// -----------------
+
+/**
+ * Check if bigint is a power-of-2.
+ * @param x a bigint
+ * @returns is power-of-2?
+ */
+export function isPow2(x: bigint): boolean {
+  return /^10*$/.test(x.toString(2));
+}
+
+
+/**
+ * Find previous power-of-2 of a bigint.
+ * @param x an int32
+ * @returns previous power-of-2
+ */
+export function prevPow2(x: bigint): bigint {
+  var n = (abs(x) + 1n).toString(2).length - 1;
+  return n===0? 0n : BigInt('0b1'+'0'.repeat(n-1));
+}
+
+
+/**
+ * Find next power-of-2 of a bigint.
+ * @param x a bigint
+ * @returns next power-of-2
+ */
+export function nextPow2(x: bigint): bigint {
+  var n = abs(x).toString(2).length - 1;
+  return BigInt('0b1'+'0'.repeat(n));
+}
+
 
 /**
  * Find the base-2 logarithm of a bigint.
