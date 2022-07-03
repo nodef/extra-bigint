@@ -5,17 +5,19 @@
 // -----
 
 /**
- * Check if value is a BigInt.
+ * Check if value is a bigint.
  * @param x a value
+ * @returns is bigint?
  */
 export function is(x: any): x is bigint {
-  return typeof x === 'bigint';
+  return typeof x==='bigint';
 }
 
 
 /**
- * Check if a value is prime.
+ * Check if a bigint is prime.
  * @param x a bigint
+ * @returns is prime?
  */
 export function isPrime(x: bigint): boolean {
   x = abs(x);
@@ -31,7 +33,7 @@ export function isPrime(x: bigint): boolean {
 
 
 /**
- * Compare two values.
+ * Compare two bigints.
  * @param x a bigint
  * @param y another bigint
  * @returns x<y: -1, x=y: 0, x>y: 1
@@ -47,16 +49,17 @@ export function compare(x: bigint, y: bigint): bigint {
 // ----
 
 /**
- * Get the absolute of a value.
+ * Get the absolute of a bigint.
  * @param x a bigint
+ * @returns |x|
  */
 export function abs(x: bigint): bigint {
-  return x<0n? -x as any : x;
+  return x<0n? -x : x;
 }
 
 
 /**
- * Find the sign of a value.
+ * Get the sign of a bigint.
  * @param x a bigint
  * @returns +ve: 1n, -ve: -1n, 0: 0n
  */
@@ -71,20 +74,23 @@ export function sign(x: bigint): bigint {
 // ----------
 
 /**
- * Find the value ≤ x/y.
+ * Calculate the floor division of bigints (\\).
  * @param x dividend
  * @param y divisor
+ * @returns x\\y = floor(x/y)
  */
 export function floorDiv(x: bigint, y: bigint): bigint {
   if (y<0n) { x=-x; y=-y; }
   return x>=0n ? (x/y) : ((x+1n)/y)-1n;
 }
+// - https://python-reference.readthedocs.io/en/latest/docs/operators/floor_division.html
 
 
 /**
- * Find the value ≥ x/y.
+ * Calculate the floor division of bigints.
  * @param x dividend
  * @param y divisor
+ * @returns ceil(x/y)
  */
 export function ceilDiv(x: bigint, y: bigint): bigint {
   if (y<0n) { x=-x; y=-y; }
@@ -101,30 +107,36 @@ export function ceilDiv(x: bigint, y: bigint): bigint {
  * Find the remainder of x/y with sign of x (truncated division).
  * @param x dividend
  * @param y divisor
+ * @returns trunc(x%y)
  */
 export function rem(x: bigint, y: bigint): bigint {
   return x % y;
 }
+// - https://en.wikipedia.org/wiki/Modulo_operation
 
 
 /**
  * Find the remainder of x/y with sign of y (floored division).
  * @param x dividend
  * @param y divisor
+ * @returns floor(x%y)
  */
 export function mod(x: bigint, y: bigint): bigint {
   return x - y*floorDiv(x, y);
 }
+// - https://en.wikipedia.org/wiki/Modulo_operation
 
 
 /**
  * Find the remainder of x/y with +ve sign (euclidean division).
  * @param x dividend
  * @param y divisor
+ * @returns x/y>0: floor(x%y), x/y<0: ceil(x%y)
  */
 export function modp(x: bigint, y: bigint): bigint {
   return x - abs(y)*floorDiv(x, abs(y));
 }
+// - https://en.wikipedia.org/wiki/Modulo_operation
 
 
 
@@ -133,8 +145,8 @@ export function modp(x: bigint, y: bigint): bigint {
 // ----
 
 function sqrtPos(x: bigint): bigint {
-  const initialGuess = 1n << (log2(x) / 2n + 1n);
-  var a = initialGuess, b = a+1n;
+  var a = 1n << (log2(x)/2n + 1n);  // initial guess
+  var b = 1n + a;
   while (a<b) {
     b = a;
     a = (b + x/b)/2n;
@@ -148,7 +160,7 @@ function sqrtPos(x: bigint): bigint {
  */
 export function sqrt(x: bigint): bigint {
   if (x===0n) return 0n;
-  else return x>0n? sqrtPos(x) : null;
+  return x>0n? sqrtPos(x) : null;
 }
 
 
@@ -162,12 +174,10 @@ export function cbrt(x: bigint): bigint {
 
 
 function rootPos(x: bigint, n: bigint): bigint {
-  const initialGuess = 1n << ((log2(x) / n) + 1n);
-  if (initialGuess === 2n) {
-    return 1n;
-  }
-  var a = initialGuess, b = a+1n, m = n-1n;
-  while(a<b) {
+  var a = 1n << (log2(x)/n + 1n);  // initial guess
+  var b = 1n + a, m = n - 1n;
+  if (a===2n) return 1n;
+  while (a<b) {
     b = a;
     a = (m*b + x/b**m)/n;
   }
@@ -182,7 +192,7 @@ function rootPos(x: bigint, n: bigint): bigint {
 export function root(x: bigint, n: bigint=1n): bigint {
   if (x===0n) return 0n;
   else if (x>0n) return rootPos(x, n);
-  else return n % 2n!==0n? -rootPos(-x, n) : null;
+  return n % 2n!==0n?  -rootPos(-x, n) : null;
 }
 
 
@@ -236,8 +246,9 @@ export function lcm(...xs: bigint[]): bigint {
 // ---------
 
 /**
- * Find the base-2 logarithm of a value.
+ * Find the base-2 logarithm of a bigint.
  * @param x a bigint
+ * @returns log₂(x)
  */
 export function log2(x: bigint): bigint {
   var n = x.toString(2).length;
@@ -246,8 +257,9 @@ export function log2(x: bigint): bigint {
 
 
 /**
- * Find the base-10 logarithm of a value.
+ * Find the base-10 logarithm of a bigint.
  * @param x a bigint
+ * @returns log₁₀(x)
  */
 export function log10(x: bigint): bigint {
   var n = x.toString(10).length;
@@ -262,7 +274,8 @@ export function log10(x: bigint): bigint {
 
 /**
  * Find the length of hypotenuse.
- * @param xs lengths of perpendicular sides
+ * @param xs lengths of perpendicular sides (x, y, z, ...)
+ * @returns √(x² + y² + z²)
  */
 export function hypot(...xs: bigint[]): bigint {
   var a = 0n;
@@ -280,10 +293,11 @@ export function hypot(...xs: bigint[]): bigint {
 /**
  * Find the sum of bigints (Σ).
  * @param xs bigints
+ * @returns Σxᵢ
  */
 export function sum(...xs: bigint[]): bigint {
   var a = 0n;
-  for(var x of xs)
+  for (var x of xs)
     a += x;
   return a;
 }
@@ -292,10 +306,11 @@ export function sum(...xs: bigint[]): bigint {
 /**
  * Find the product of bigints (∏).
  * @param xs bigints
+ * @returns ∏xᵢ
  */
 export function product(...xs: bigint[]): bigint {
   var a = 1n;
-  for(var x of xs)
+  for (var x of xs)
     a *= x;
   return a;
 }
@@ -304,31 +319,42 @@ export function product(...xs: bigint[]): bigint {
 /**
  * Find the smallest bigint.
  * @param xs bigints
+ * @returns min(xs)
  */
 export function min(...xs: bigint[]): bigint {
-  return range(...xs)[0];
+  if (xs.length===0) return 0n;
+  var a = xs[0];
+  for (var x of xs)
+    a = x<a? x : a;
+  return a;
 }
 
 
 /**
  * Find the largest bigint.
  * @param xs bigints
+ * @returns max(xs)
  */
 export function max(...xs: bigint[]): bigint {
-  return range(...xs)[1];
+  if (xs.length===0) return 0n;
+  var a = xs[0];
+  for (var x of xs)
+    a = x>a? x : a;
+  return a;
 }
 
 
 /**
- * TODO: Find the smallest and largest value.
+ * Find the minimum and maximum bigint.
  * @param xs bigints
- * @returns [smallest, largest]
+ * @returns [min, max]
  */
 export function range(...xs: bigint[]): [bigint, bigint] {
-  var a = xs[0]||null, b = a;
+  if (xs.length===0) return [0n, 0n];
+  var a = xs[0], b = a;
   for (var x of xs) {
-    a = a<x? a : x;
-    b = b>x? b : x;
+    a = x<a? x : a;
+    b = x>b? x : b;
   }
   return [a, b];
 }
@@ -340,48 +366,53 @@ export function range(...xs: bigint[]): [bigint, bigint] {
 // ----
 
 /**
- * Find the arithmetic mean of bigints.
+ * Find the arithmetic mean of bigints (µ).
  * @param xs bigints
+ * @returns µ = (Σxᵢ)/n | n = size(xs)
  */
 export function arithmeticMean(...xs: bigint[]): bigint {
-  var X = BigInt(xs.length);
-  return sum(...xs)/X;
+  var n = BigInt(xs.length);
+  return sum(...xs)/n;
 }
+export {arithmeticMean as mean};
 
 
 /**
  * Find the geometric mean of bigints.
  * @param xs bigints
+ * @returns ⁿ√(∏xᵢ) | n = size(xs)
  */
 export function geometricMean(...xs: bigint[]): bigint {
-  var X = BigInt(xs.length);
-  return root(product(...xs), X);
+  var n = BigInt(xs.length);
+  return root(product(...xs), n);
 }
 
 
 /**
  * Find the harmonic mean of bigints.
  * @param xs bigints
+ * @returns n/Σ(1/xᵢ) | n = size(xs)
  */
 export function harmonicMean(...xs: bigint[]): bigint {
-  var X = BigInt(xs.length);
+  var n = BigInt(xs.length);
   var p = product(...xs), q = 0n;
   for (var x of xs)
     q += p/x;
-  return X*p/q;
+  return n*p/q;
 }
 
 
 /**
  * Find the quadriatic mean of bigints.
  * @param xs bigints
+ * @returns √(Σxᵢ²)/n | n = size(xs)
  */
 export function quadriaticMean(...xs: bigint[]): bigint {
-  var X = BigInt(xs.length);
+  var n = BigInt(xs.length);
   var a = 0n;
   for (var x of xs)
     a += x*x;
-  return sqrt(a/X);
+  return sqrt(a/n);
 }
 export {quadriaticMean as rootMeanSquare};
 
@@ -389,11 +420,12 @@ export {quadriaticMean as rootMeanSquare};
 /**
  * Find the cubic mean of bigints.
  * @param xs bigints
+ * @returns ³√(Σxᵢ³)/n | n = size(xs)
  */
 export function cubicMean(...xs: bigint[]): bigint {
-  var X = BigInt(xs.length);
+  var n = BigInt(xs.length);
   var a = 0n;
   for (var x of xs)
     a += x**3n;
-  return cbrt(a/X);
+  return cbrt(a/n);
 }
