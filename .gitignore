@@ -1,5 +1,7 @@
 # Generated files
-build/
+.build/
+.docs/
+coverage/
 *.d.ts
 *.map
 example.js
