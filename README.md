@@ -102,7 +102,8 @@ bigint.mean(1n, 7n, 8n);
 <br>
 
 
-[![](https://img.youtube.com/vi/6mMK6iSZsAs/maxresdefault.jpg)](https://www.youtube.com/watch?v=6mMK6iSZsAs)<br>
+[![](https://img.youtube.com/vi/RJS3Z2DYEO4/maxresdefault.jpg)](https://www.youtube.com/watch?v=RJS3Z2DYEO4)<br>
+[![DOI](https://zenodo.org/badge/274701321.svg)](https://zenodo.org/badge/latestdoi/274701321)
 
 
 [is]: https://nodef.github.io/extra-bigint/modules.html#is
