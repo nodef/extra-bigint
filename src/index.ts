@@ -14,29 +14,16 @@ export function is(x: any): x is bigint {
 }
 
 
-/**
- * Check if a bigint is prime.
- * @param x a bigint
- * @returns is prime?
- */
-export function isPrime(x: bigint): boolean {
-  x = abs(x);
-  // 2, 3 are prime
-  if (x<=3n) return x>1n;
-  // multiples of 2, 3 not prime
-  if (x % 2n===0n || x % 3n===0n) return false;
-  // factor of 6k-1 or 6k+1 => not prime
-  for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n)
-    if (x % (i-1n)===0n || x % (i+1n)===0n) return false;
-  return true;
-}
 
+
+// COMPARE
+// -------
 
 /**
  * Compare two bigints.
  * @param x a bigint
  * @param y another bigint
- * @returns x<y: -1, x=y: 0, x>y: 1
+ * @returns x<y: -1n, x=y: 0n, x>y: 1n
  */
 export function compare(x: bigint, y: bigint): bigint {
   return x<y? -1n : (x>y? 1n : 0n);
@@ -61,7 +48,7 @@ export function abs(x: bigint): bigint {
 /**
  * Get the sign of a bigint.
  * @param x a bigint
- * @returns +ve: 1n, -ve: -1n, 0: 0n
+ * @returns x>0: 1n, x<0: -1n, x=0: 0n
  */
 export function sign(x: bigint): bigint {
   return x<0n? -1n : (x>0n? 1n : 0n);
@@ -70,31 +57,43 @@ export function sign(x: bigint): bigint {
 
 
 
-// ARITHMETIC
-// ----------
+// ROUNDED DIVISION
+// ----------------
 
 /**
- * Calculate the floor division of bigints (\\).
+ * Perform floor-divison of two bigints (\\).
  * @param x dividend
  * @param y divisor
- * @returns x\\y = floor(x/y)
+ * @returns ⌊x/y⌋
  */
 export function floorDiv(x: bigint, y: bigint): bigint {
-  if (y<0n) { x=-x; y=-y; }
-  return x>=0n ? (x/y) : ((x+1n)/y)-1n;
+  if (y<0n) { x = -x; y = -y; }
+  return x>=0n? x/y : (x-y+1n)/y;
 }
 // - https://python-reference.readthedocs.io/en/latest/docs/operators/floor_division.html
 
 
 /**
- * Calculate the floor division of bigints.
+ * Perform ceiling-divison of two bigints.
  * @param x dividend
  * @param y divisor
- * @returns ceil(x/y)
+ * @returns ⌈x/y⌉
  */
 export function ceilDiv(x: bigint, y: bigint): bigint {
-  if (y<0n) { x=-x; y=-y; }
-  return x<=0n ? (x/y) : ((x-1n)/y)+1n;
+  if (y<0n) { x = -x; y = -y; }
+  return x>=0n? (x+y-1n)/y : x/y;
+}
+
+
+/**
+ * Perform rounded-divison of two bigints.
+ * @param x divisor
+ * @param y dividend
+ * @returns [x/y]
+ */
+export function roundDiv(x: bigint, y: bigint): bigint {
+  if (y<0n) { x = -x; y = -y; }
+  return x>=0n? (x+y/2n)/y : (x-y/2n)/y;
 }
 
 
@@ -200,6 +199,26 @@ export function root(x: bigint, n: bigint=1n): bigint {
 
 // FACTORS
 // -------
+
+
+
+/**
+ * Check if a bigint is prime.
+ * @param x a bigint
+ * @returns is prime?
+ */
+ export function isPrime(x: bigint): boolean {
+  x = abs(x);
+  // 2, 3 are prime
+  if (x<=3n) return x>1n;
+  // multiples of 2, 3 not prime
+  if (x % 2n===0n || x % 3n===0n) return false;
+  // factor of 6k-1 or 6k+1 => not prime
+  for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n)
+    if (x % (i-1n)===0n || x % (i+1n)===0n) return false;
+  return true;
+}
+
 
 // Find the greatest common divisor of a pair of bigints.
 function gcdPair(x: bigint, y: bigint): bigint {
