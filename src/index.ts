@@ -106,7 +106,7 @@ export function roundDiv(x: bigint, y: bigint): bigint {
  * Find the remainder of x/y with sign of x (truncated division).
  * @param x dividend
  * @param y divisor
- * @returns trunc(x%y)
+ * @returns trunc(x % y)
  */
 export function rem(x: bigint, y: bigint): bigint {
   return x % y;
@@ -118,7 +118,7 @@ export function rem(x: bigint, y: bigint): bigint {
  * Find the remainder of x/y with sign of y (floored division).
  * @param x dividend
  * @param y divisor
- * @returns floor(x%y)
+ * @returns floor(x % y)
  */
 export function mod(x: bigint, y: bigint): bigint {
   return x - y*floorDiv(x, y);
@@ -130,7 +130,7 @@ export function mod(x: bigint, y: bigint): bigint {
  * Find the remainder of x/y with +ve sign (euclidean division).
  * @param x dividend
  * @param y divisor
- * @returns x/y>0: floor(x%y), x/y<0: ceil(x%y)
+ * @returns x/y>0: floor(x % y), x/y<0: ceil(x % y)
  */
 export function modp(x: bigint, y: bigint): bigint {
   return x - abs(y)*floorDiv(x, abs(y));
@@ -140,8 +140,67 @@ export function modp(x: bigint, y: bigint): bigint {
 
 
 
-// ROOT
-// ----
+// RANGE CONTROL
+// -------------
+
+/**
+ * Constrain a bigint within a minimum and a maximum value.
+ * @param x a bigint
+ * @param minv minimum value
+ * @param maxv maximum value
+ * @returns x<min: min, x>max: max, x
+ */
+export function constrain(x: bigint, minv: bigint, maxv: bigint): bigint {
+  return min(max(x, minv), maxv);
+}
+export {constrain as clamp};
+// - https://processing.org/reference/constrain_.html
+// - https://www.npmjs.com/package/clamp
+// - https://en.cppreference.com/w/cpp/algorithm/clamp
+// - https://dlang.org/library/std/algorithm/comparison/clamp.html
+// - https://www.rdocumentation.org/packages/raster/versions/3.0-12/topics/clamp
+// - https://docs.microsoft.com/en-us/dotnet/api/system.math.clamp?view=netcore-3.1
+// - https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-clamp
+// - https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/clamp.xhtml
+// - https://docs.unity3d.com/ScriptReference/Mathf.Clamp.html
+// - https://en.wikipedia.org/wiki/Clamping_(graphics)
+
+
+/**
+ * Re-map a bigint from one range to another.
+ * @param x a bigint
+ * @param r lower bound of current range
+ * @param R upper bound of current range
+ * @param t lower bound of target range
+ * @param T upper bound of target range
+ * @returns ∈ [ymin, ymax]
+ */
+ export function remap(x: bigint, r: bigint, R: bigint, t: bigint, T: bigint): bigint {
+  return t + (x - r)*(T - t)/(R - r);
+}
+export {remap as map};
+// - https://processing.org/reference/map_.html
+
+
+/**
+ * Linearly interpolate a bigint between two bigints.
+ * @param x start bigint
+ * @param y stop bigint
+ * @param t interpolant ∈ [0, 1]
+ * @returns ∈ [x, y]
+ */
+ export function lerp(x: bigint, y: bigint, t: number): bigint {
+  return x + BigInt(t*Number(y - x));
+}
+// - https://processing.org/reference/lerp_.html
+// - https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
+// - https://stackoverflow.com/questions/53970655/how-to-convert-bigint-to-number-in-javascript
+
+
+
+
+// ARITHMETIC
+// ----------
 
 function sqrtPos(x: bigint): bigint {
   var a = 1n << (log2(x)/2n + 1n);  // initial guess
