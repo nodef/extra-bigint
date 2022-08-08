@@ -199,8 +199,99 @@ export {remap as map};
 
 
 
-// ARITHMETIC
-// ----------
+// POWER / LOGARITHM
+// -----------------
+
+/**
+ * Check if bigint is a power-of-2.
+ * @param x a bigint
+ * @returns 2ⁱ = x? | i = +ve integer
+ */
+export function isPow2(x: bigint): boolean {
+  return /^10*$/.test(x.toString(2));
+}
+
+
+/**
+ * Check if bigint is a power-of-10.
+ * @param x a bigint
+ * @returns 10ⁱ = x? | i = +ve integer
+ */
+export function isPow10(x: bigint): boolean {
+  return /^10*$/.test(x.toString());
+}
+
+
+/**
+ * Find previous power-of-2 of a bigint.
+ * @param x a bigint
+ * @returns 2ⁱ | 2ⁱ < x and 2ⁱ ≥ x/2
+ */
+export function prevPow2(x: bigint): bigint {
+  var n = (abs(x) - 1n).toString(2).length - 1;
+  return n<=0? 0n : BigInt("0b1"+"0".repeat(n));
+}
+
+
+/**
+ * Find previous power-of-10 of a bigint.
+ * @param x a bigint
+ * @returns 10ⁱ | 10ⁱ < x and 10ⁱ ≥ x/10
+ */
+export function prevPow10(x: bigint): bigint {
+  var n = (abs(x) - 1n).toString().length - 1;
+  return n<=0? 0n : BigInt("1"+"0".repeat(n));
+}
+
+
+/**
+ * Find next power-of-2 of a bigint.
+ * @param x a bigint
+ * @returns 2ⁱ | 2ⁱ > x and 2ⁱ ≤ 2x
+ */
+export function nextPow2(x: bigint): bigint {
+  var n = abs(x).toString(2).length - 1;
+  return x<=0n? 1n : BigInt("0b1"+"0".repeat(n+1));
+}
+
+
+/**
+ * Find next power-of-10 of a bigint.
+ * @param x a bigint
+ * @returns 10ⁱ | 10ⁱ > x and 10ⁱ ≤ 10x
+ */
+export function nextPow10(x: bigint): bigint {
+  var n = abs(x).toString().length - 1;
+  return x<=0n? 1n : BigInt("1"+"0".repeat(n+1));
+}
+
+
+/**
+ * Find the base-2 logarithm of a bigint.
+ * @param x a bigint
+ * @returns log₂(x)
+ */
+export function log2(x: bigint): bigint {
+  var n = x.toString(2).length - 1;
+  return x<=0n? 0n : BigInt(n);
+}
+
+
+/**
+ * Find the base-10 logarithm of a bigint.
+ * @param x a bigint
+ * @returns log₁₀(x)
+ */
+export function log10(x: bigint): bigint {
+  var n = x.toString().length - 1;
+  return x<=0n? 0n : BigInt(n);
+}
+
+
+
+
+// ROOT
+// ----
 
 function sqrtPos(x: bigint): bigint {
   var a = 1n << (log2(x)/2n + 1n);  // initial guess
@@ -316,65 +407,6 @@ export function lcm(...xs: bigint[]): bigint {
   return a;
 }
 // - https://en.wikipedia.org/wiki/Least_common_multiple
-
-
-
-
-// POWER / LOGARITHM
-// -----------------
-
-/**
- * Check if bigint is a power-of-2.
- * @param x a bigint
- * @returns is power-of-2?
- */
-export function isPow2(x: bigint): boolean {
-  return /^10*$/.test(x.toString(2));
-}
-
-
-/**
- * Find previous power-of-2 of a bigint.
- * @param x an int32
- * @returns previous power-of-2
- */
-export function prevPow2(x: bigint): bigint {
-  var n = (abs(x) + 1n).toString(2).length - 1;
-  return n===0? 0n : BigInt('0b1'+'0'.repeat(n-1));
-}
-
-
-/**
- * Find next power-of-2 of a bigint.
- * @param x a bigint
- * @returns next power-of-2
- */
-export function nextPow2(x: bigint): bigint {
-  var n = abs(x).toString(2).length - 1;
-  return BigInt('0b1'+'0'.repeat(n));
-}
-
-
-/**
- * Find the base-2 logarithm of a bigint.
- * @param x a bigint
- * @returns log₂(x)
- */
-export function log2(x: bigint): bigint {
-  var n = x.toString(2).length;
-  return x>0n? BigInt(n-1) : null;
-}
-
-
-/**
- * Find the base-10 logarithm of a bigint.
- * @param x a bigint
- * @returns log₁₀(x)
- */
-export function log10(x: bigint): bigint {
-  var n = x.toString(10).length;
-  return x>0n? BigInt(n-1) : null;
-}
 
 
 
