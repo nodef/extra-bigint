@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A collection of functions for working with BigInts.",
   "sideEffects": false,
   "main": "index.js",
@@ -32,9 +32,9 @@
   },
   "homepage": "https://github.com/nodef/extra-bigint#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "extra-build": "^2.1.31",
+    "extra-build": "^2.2.27",
     "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-dts": "^4.2.2"
   }
