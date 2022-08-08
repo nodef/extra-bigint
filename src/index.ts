@@ -288,6 +288,12 @@ export function log10(x: bigint): bigint {
 }
 
 
+// TODO: isPow() based on accelerated search
+// TODO: prevPow() based on accelerated search
+// TODO: nextPow() based on accelerated search
+// TODO: log() based on accelerated search
+
+
 
 
 // ROOT
@@ -306,6 +312,7 @@ function sqrtPos(x: bigint): bigint {
 /**
  * Find the square root of a bigint.
  * @param x a bigint
+ * @returns √x
  */
 export function sqrt(x: bigint): bigint {
   if (x===0n) return 0n;
@@ -316,6 +323,7 @@ export function sqrt(x: bigint): bigint {
 /**
  * Find the cube root of a bigint.
  * @param x a bigint
+ * @returns ³√x
  */
 export function cbrt(x: bigint): bigint {
   return root(x, 3n);
@@ -337,6 +345,7 @@ function rootPos(x: bigint, n: bigint): bigint {
  * Find the nth root of a bigint.
  * @param x a bigint
  * @param n nth root (1n)
+ * @returns ⁿ√x
  */
 export function root(x: bigint, n: bigint=1n): bigint {
   if (x===0n) return 0n;
@@ -347,23 +356,47 @@ export function root(x: bigint, n: bigint=1n): bigint {
 
 
 
-// FACTORS
-// -------
+// DIVISORS
+// --------
 
+/**
+ * List all divisors of a bigint, except itself.
+ * @param x a bigint
+ * @returns proper divisors (factors)
+ */
+export function properDivisors(x: bigint): bigint[] {
+  var x = abs(x), a = [];
+  for (var i=1n; i<x; i++)
+    if (x % i===0n) a.push(i);
+  return a;
+}
 
 
 /**
- * Check if a bigint is prime.
+ * Sum all proper divisors of a bigint.
  * @param x a bigint
- * @returns is prime?
+ * @returns Σdᵢ | dᵢ is a divisor of x and ≠x
  */
- export function isPrime(x: bigint): boolean {
-  x = abs(x);
-  // 2, 3 are prime
+export function aliquotSum(x: bigint): bigint {
+  var x = abs(x), a = 0n;
+  for (var i=0n; i<x; i++)
+    if (x % i===0n) a += i;
+  return a;
+}
+
+
+/**
+ * Check if bigint is prime.
+ * @param x a bigint
+ * @returns is divisible by 1n and itself only?
+ */
+export function isPrime(x: bigint): boolean {
+  var x = abs(x);
+  // 1. 2, 3 are prime
   if (x<=3n) return x>1n;
-  // multiples of 2, 3 not prime
+  // 2. Multiples of 2, 3 not prime
   if (x % 2n===0n || x % 3n===0n) return false;
-  // factor of 6k-1 or 6k+1 => not prime
+  // 3. Factor of 6k-1 or 6k+1 => not prime
   for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n)
     if (x % (i-1n)===0n || x % (i+1n)===0n) return false;
   return true;
@@ -379,6 +412,7 @@ function gcdPair(x: bigint, y: bigint): bigint {
   }
   return x;
 }
+// - https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/
 // - https://en.wikipedia.org/wiki/Euclidean_algorithm
 
 /**
