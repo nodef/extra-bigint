@@ -445,6 +445,63 @@ export function lcm(...xs: bigint[]): bigint {
 
 
 
+// ARRANGEMENTS
+// ------------
+
+/**
+ * Find the factorial of a bigint.
+ * @param n a bigint
+ * @param k denominator factorial [0]
+ * @returns P(n, k); k=0: n!, k>0: n!/k!
+ */
+export function factorial(n: bigint, k: bigint=0n): bigint {
+  if (n<0n) return 0n;
+  for (var i=k+1n, a=1n; i<=n; i++)
+    a *= i;
+  return a;
+}
+// - https://github.com/alawatthe/MathLib/blob/master/src/Functn/functions/factorial.ts
+// - https://en.wikipedia.org/wiki/Permutation
+
+
+/**
+ * Find the number of ways to choose k elements from a set of n elements.
+ * @param n elements in source set
+ * @param k elements in choose set
+ * @returns C(n, k)
+ */
+export function binomial(n: bigint, k: bigint): bigint {
+  // 1. Generalization to negative integers
+  if (k<0n || k>abs(n)) return 0n;
+  if (n<0n) return ((-1n)**k)*binomial(-n, k);
+  // 2. Take advantage of symmetry
+  k = k>n-k? n-k:k;
+  for (var a=1n, i=1n; i<=k; i++, n--)
+    a *= n/i;
+  return a;
+}
+// - https://github.com/alawatthe/MathLib/blob/master/src/Functn/functions/binomial.ts
+// - https://en.wikipedia.org/wiki/Binomial_coefficient
+
+
+/**
+ * Find the number of ways to put n objects in m bins (n=sum(kᵢ)).
+ * @param ks objects per bin (kᵢ)
+ * @returns n!/(k₁!k₂!...) | n=sum(kᵢ)
+ */
+export function multinomial(...ks: bigint[]): bigint {
+  var n = sum(...ks), a = 1n;
+  for (var i=0, j=0n, I=ks.length; i<I;) {
+    if (j<=0n) j = ks[i++];
+    else a *= n--/j--;
+  }
+  return a;
+}
+// - https://en.wikipedia.org/wiki/Multinomial_distribution
+
+
+
+
 // GEOMETRY
 // --------
 
@@ -538,8 +595,8 @@ export function range(...xs: bigint[]): [bigint, bigint] {
 
 
 
-// MEAN
-// ----
+// MEAN (STATISTICS)
+// -----------------
 
 /**
  * Find the arithmetic mean of bigints (µ).
