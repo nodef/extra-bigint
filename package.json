@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of functions for working with BigInts.",
   "sideEffects": false,
   "main": "index.js",
@@ -12,7 +12,8 @@
   "scripts": {
     "test": "exit",
     "build": "node ./build",
-    "deploy": "node ./build deploy"
+    "publish-docs": "node ./build publish-docs",
+    "publish-packages": "node ./build publish-packages"
   },
   "keywords": [
     "extra",
