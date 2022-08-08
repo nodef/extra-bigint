@@ -190,7 +190,7 @@ export {remap as map};
  * @returns ∈ [x, y]
  */
  export function lerp(x: bigint, y: bigint, t: number): bigint {
-  return x + BigInt(t*Number(y - x));
+  return x + BigInt(Math.round(t*Number(y - x)));
 }
 // - https://processing.org/reference/lerp_.html
 // - https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
@@ -240,7 +240,7 @@ export function prevPow2(x: bigint): bigint {
  */
 export function prevPow10(x: bigint): bigint {
   var n = (abs(x) - 1n).toString().length - 1;
-  return n<=0? 0n : BigInt("1"+"0".repeat(n));
+  return x<=0? 0n : BigInt("1"+"0".repeat(n));
 }
 
 
@@ -379,7 +379,7 @@ export function properDivisors(x: bigint): bigint[] {
  */
 export function aliquotSum(x: bigint): bigint {
   var x = abs(x), a = 0n;
-  for (var i=0n; i<x; i++)
+  for (var i=1n; i<x; i++)
     if (x % i===0n) a += i;
   return a;
 }
@@ -476,9 +476,11 @@ export function binomial(n: bigint, k: bigint): bigint {
   if (n<0n) return ((-1n)**k)*binomial(-n, k);
   // 2. Take advantage of symmetry
   k = k>n-k? n-k:k;
-  for (var a=1n, i=1n; i<=k; i++, n--)
-    a *= n/i;
-  return a;
+  for (var a=1n, b=1n, i=1n; i<=k; i++, n--) {
+    a *= n;
+    b *= i;
+  }
+  return a/b;
 }
 // - https://github.com/alawatthe/MathLib/blob/master/src/Functn/functions/binomial.ts
 // - https://en.wikipedia.org/wiki/Binomial_coefficient
@@ -490,12 +492,12 @@ export function binomial(n: bigint, k: bigint): bigint {
  * @returns n!/(k₁!k₂!...) | n=sum(kᵢ)
  */
 export function multinomial(...ks: bigint[]): bigint {
-  var n = sum(...ks), a = 1n;
+  var n = sum(...ks), a = 1n, b = 1n;
   for (var i=0, j=0n, I=ks.length; i<I;) {
     if (j<=0n) j = ks[i++];
-    else a *= n--/j--;
+    else { a *= n--; b*= j--; }
   }
-  return a;
+  return a/b;
 }
 // - https://en.wikipedia.org/wiki/Multinomial_distribution
 

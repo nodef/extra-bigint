@@ -107,6 +107,9 @@ bigint.mean(1n, 7n, 8n);
 
 [![](https://img.youtube.com/vi/RJS3Z2DYEO4/maxresdefault.jpg)](https://www.youtube.com/watch?v=RJS3Z2DYEO4)<br>
 [![DOI](https://zenodo.org/badge/274701321.svg)](https://zenodo.org/badge/latestdoi/274701321)
+[![Coverage Status](https://coveralls.io/repos/github/nodef/extra-bigint/badge.svg?branch=master)](https://coveralls.io/github/nodef/extra-bigint?branch=master)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/test_coverage)](https://codeclimate.com/github/nodef/extra-bigint/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/maintainability)](https://codeclimate.com/github/nodef/extra-bigint/maintainability)
 
 
 [is]: https://nodef.github.io/extra-bigint/modules.html#is

@@ -192,7 +192,7 @@ test("lerp", () => {
   var a = lerp(80n, 320n, 0.20);
   expect(a).toBe(128n);
   var a = lerp(80n, 320n, 0.32);
-  expect(a).toBe(156n);
+  expect(a).toBe(157n);
 });
 // - https://processing.org/reference/lerp_.html
 
@@ -451,49 +451,49 @@ test("range", () => {
 
 test("arithmeticMean", () => {
   var a = arithmeticMean(1n, 2n);
-  expect(a).toBe(BigInt(1.5));
+  expect(a).toBe(BigInt(Math.floor(1.5)));
   var a = arithmeticMean(1n, 2n, 3n);
-  expect(a).toBe(BigInt(2));
+  expect(a).toBe(BigInt(Math.floor(2)));
   var a = arithmeticMean(1n, 2n, 3n, 4n);
-  expect(a).toBe(BigInt(2.5));
+  expect(a).toBe(BigInt(Math.floor(2.5)));
 });
 
 
 test("geometricMean", () => {
   var a = geometricMean(1n, 2n);
-  expect(a).toBe(BigInt(Math.sqrt(2)));
+  expect(a).toBe(BigInt(Math.floor(Math.sqrt(2))));
   var a = geometricMean(1n, 2n, 3n);
-  expect(a).toBe(BigInt(Math.cbrt(6)));
+  expect(a).toBe(BigInt(Math.floor(Math.cbrt(6))));
   var a = geometricMean(1n, 2n, 3n, 4n);
-  expect(a).toBe(BigInt(Math.pow(24, 1/4)));
+  expect(a).toBe(BigInt(Math.floor(Math.pow(24, 1/4))));
 });
 
 
 test("harmonicMean", () => {
   var a = harmonicMean(1n, 2n);
-  expect(a).toBe(BigInt(4/3));
+  expect(a).toBe(BigInt(Math.floor(4/3)));
   var a = harmonicMean(1n, 2n, 3n);
-  expect(a).toBe(BigInt(18/11));
+  expect(a).toBe(BigInt(Math.floor(18/11)));
   var a = harmonicMean(1n, 2n, 3n, 4n);
-  expect(a).toBe(BigInt(48/25));
+  expect(a).toBe(BigInt(Math.floor(48/25)));
 });
 
 
 test("quadriaticMean", () => {
   var a = quadriaticMean(1n, 2n);
-  expect(a).toBe(BigInt(Math.sqrt(5/2)));
+  expect(a).toBe(BigInt(Math.floor(Math.sqrt(5/2))));
   var a = quadriaticMean(1n, 2n, 3n);
-  expect(a).toBe(BigInt(Math.sqrt(14/3)));
+  expect(a).toBe(BigInt(Math.floor(Math.sqrt(14/3))));
   var a = quadriaticMean(1n, 2n, 3n, 4n);
-  expect(a).toBe(BigInt(Math.sqrt(30/4)));
+  expect(a).toBe(BigInt(Math.floor(Math.sqrt(30/4))));
 });
 
 
 test("cubicMean", () => {
   var a = cubicMean(1n, 2n);
-  expect(a).toBe(BigInt(Math.cbrt(9/2)));
+  expect(a).toBe(BigInt(Math.floor(Math.cbrt(9/2))));
   var a = cubicMean(1n, 2n, 3n);
-  expect(a).toBe(BigInt(Math.cbrt(36/3)));
+  expect(a).toBe(BigInt(Math.floor(Math.cbrt(36/3))));
   var a = cubicMean(1n, 2n, 3n, 4n);
-  expect(a).toBe(BigInt(Math.cbrt(100/4)));
+  expect(a).toBe(BigInt(Math.floor(Math.cbrt(100/4))));
 });
