@@ -34,9 +34,12 @@ import {multinomial}    from "../src";
 import {hypot}          from "../src";
 import {sum}            from "../src";
 import {product}        from "../src";
+import {median}         from "../src";
+import {modes}          from "../src";
 import {min}            from "../src";
 import {max}            from "../src";
 import {range}          from "../src";
+import {variance}       from "../src";
 import {arithmeticMean} from "../src";
 import {geometricMean}  from "../src";
 import {harmonicMean}   from "../src";
@@ -95,10 +98,30 @@ test("is", () => {
 
 test("compare", () => {
   var a = compare(10n, 12n);
-  expect(a).toBe(-1n);
+  expect(a).toBeLessThan(0);
   var a = compare(12n, 12n);
-  expect(a).toBe(0n);
+  expect(a).toBe(0);
   var a = compare(17n, 12n);
+  expect(a).toBeGreaterThan(0);
+});
+
+
+test("abs", () => {
+  var a = abs(-2n);
+  expect(a).toBe(2n);
+  var a = abs(0n);
+  expect(a).toBe(0n);
+  var a = abs(5n);
+  expect(a).toBe(5n);
+});
+
+
+test("sign", () => {
+  var a = sign(-2n);
+  expect(a).toBe(-1n);
+  var a = sign(0n);
+  expect(a).toBe(0n);
+  var a = sign(5n);
   expect(a).toBe(1n);
 });
 
@@ -389,6 +412,16 @@ test("multinomial", () => {
 });
 
 
+test("hypot", () => {
+  var a = hypot(3n, 4n);
+  expect(a).toBe(5n);
+  var a = hypot(8n, 15n);
+  expect(a).toBe(17n);
+  var a = hypot(6n, 8n);
+  expect(a).toBe(10n);
+});
+
+
 test("sum", () => {
   var a = sum(1n, 2n);
   expect(a).toBe(3n);
@@ -409,24 +442,44 @@ test("product", () => {
 });
 
 
-// test("median", () => {
-//   var a = median(1, 7);
-//   expect(a).toBe(4);
-//   var a = median(1, 7, 8);
-//   expect(a).toBe(7);
-//   var a = median(1, 7, 8, 10);
-//   expect(a).toBe(7.5);
-// });
+test("median", () => {
+  var a = median(1n, 7n);
+  expect(a).toBe(4n);
+  var a = median(1n, 7n, 8n);
+  expect(a).toBe(7n);
+  var a = median(1n, 7n, 8n, 10n);
+  expect(a).toBe(7n);
+});
 
 
-// test("modes", () => {
-//   var a = modes(1, 2);
-//   expect(a).toStrictEqual([1, 2]);
-//   var a = modes(1, 2, 2);
-//   expect(a).toStrictEqual([2]);
-//   var a = modes(1, 2, 2, 3, 3);
-//   expect(a).toStrictEqual([2, 3]);
-// });
+test("modes", () => {
+  var a = modes(1n, 2n);
+  expect(a).toStrictEqual([1n, 2n]);
+  var a = modes(1n, 2n, 2n);
+  expect(a).toStrictEqual([2n]);
+  var a = modes(1n, 2n, 2n, 3n, 3n);
+  expect(a).toStrictEqual([2n, 3n]);
+});
+
+
+test("min", () => {
+  var a = min(1n, 7n);
+  expect(a).toBe(1n);
+  var a = min(8n, 7n, 6n);
+  expect(a).toBe(6n);
+  var a = min(7n, 8n, 6n);
+  expect(a).toBe(6n);
+});
+
+
+test("max", () => {
+  var a = max(1n, 7n);
+  expect(a).toBe(7n);
+  var a = max(8n, 7n, 6n);
+  expect(a).toBe(8n);
+  var a = max(7n, 8n, 6n);
+  expect(a).toBe(8n);
+});
 
 
 test("range", () => {
@@ -439,14 +492,14 @@ test("range", () => {
 });
 
 
-// test("variance", () => {
-//   var a = variance(1n, 2n);
-//   expect(a).toBe(BigInt(0.25));
-//   var a = variance(1n, 2n, 3n);
-//   expect(a).toBe(BigInt(0.6666666666666666));
-//   var a = variance(1n, 2n, 3n, 4n);
-//   expect(a).toBe(BigInt(1.25));
-// });
+test("variance", () => {
+  var a = variance(1n, 2n);
+  expect(a).toBe(BigInt(Math.floor(0.25)));
+  var a = variance(1n, 2n, 3n);
+  expect(a).toBe(BigInt(Math.floor(0.6666666666666666)));
+  var a = variance(1n, 2n, 3n, 4n);
+  expect(a).toBe(BigInt(Math.floor(1.25)));
+});
 
 
 test("arithmeticMean", () => {

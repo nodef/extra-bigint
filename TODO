@@ -5,15 +5,11 @@ WHY NOT USE STRING?
 - rotate?
 
 FROM NUMBER
-- aliquotSum
 - fromRoman
 - fromScientific
 - fromWords
-- lerp
-- map
 - nextPow
 - prevPow
-- properDivisors
 - significantDigits
 - toRoman
 - toScientific

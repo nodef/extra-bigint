@@ -10,7 +10,7 @@
  * @returns is bigint?
  */
 export function is(x: any): x is bigint {
-  return typeof x==='bigint';
+  return typeof x==="bigint";
 }
 
 
@@ -23,10 +23,10 @@ export function is(x: any): x is bigint {
  * Compare two bigints.
  * @param x a bigint
  * @param y another bigint
- * @returns x<y: -1n, x=y: 0n, x>y: 1n
+ * @returns x<y: -ve, x=y: 0, x>y: +ve
  */
-export function compare(x: bigint, y: bigint): bigint {
-  return x<y? -1n : (x>y? 1n : 0n);
+export function compare(x: bigint, y: bigint): number {
+  return Number(x-y);
 }
 
 
@@ -552,6 +552,53 @@ export function product(...xs: bigint[]): bigint {
 
 
 /**
+ * Find the value separating the higher and lower halves of bigints.
+ * @param xs a list of bigints
+ * @returns xₘ | sort(xs) = [..., xₘ, ...]
+ */
+export function median(...xs: bigint[]): bigint {
+  if (xs.length===0) return 0n;
+  xs.sort(compare);
+  var i = xs.length>>1;
+  if ((xs.length & 1)===1) return xs[i];
+  return (xs[i-1] + xs[i])/2n;
+}
+// - https://stackoverflow.com/questions/45309447/calculating-median-javascript
+// - https://en.wikipedia.org/wiki/Median
+
+
+// Get the maximum number of times any bigint has repeated in a sorted array.
+function maxRepeat(xs: bigint[]): number {
+  var count = Math.min(xs.length, 1), max = count;
+  for (var i=1, I=xs.length; i<I; i++) {
+    if (xs[i-1]===xs[i]) count++;
+    else { max = Math.max(max, count); count = 1; }
+  }
+  return Math.max(max, count);
+}
+
+// Get the numbers which have been repeated atleast given number of times.
+function getRepeats(xs: bigint[], r: number): bigint[] {
+  var a: bigint[] = []; r--;
+  for (var i=0, I=xs.length-r; i<I; i++)
+    if (xs[i]===xs[i+r]) a.push(xs[i+=r]);
+  return a;
+}
+
+/**
+ * Find the values that appear most often.
+ * @param xs a list of bigints
+ * @returns [xₘ₁, xₘ₂, ...] | count(xₘᵢ) ≥ count(xᵢ) ∀ xᵢ ∈ xs
+ */
+export function modes(...xs: bigint[]): bigint[] {
+  xs.sort(compare);
+  var r = maxRepeat(xs);
+  return getRepeats(xs, r);
+}
+// - https://en.wikipedia.org/wiki/Mode_(statistics)
+
+
+/**
  * Find the smallest bigint.
  * @param xs bigints
  * @returns min(xs)
@@ -593,6 +640,21 @@ export function range(...xs: bigint[]): [bigint, bigint] {
   }
   return [a, b];
 }
+
+
+/**
+ * Find the mean of squared deviation of bigints from its mean.
+ * @param xs a list of bigints
+ * @returns σ² = E[(xs - µ)²] | µ = mean(xs)
+ */
+export function variance(...xs: bigint[]): bigint {
+  if (xs.length===0) return 0n;
+  var m = arithmeticMean(...xs), a = 0n;
+  for (var x of xs)
+    a += (x-m)**2n;
+  return a/BigInt(xs.length);
+}
+// - https://en.wikipedia.org/wiki/Variance
 
 
 
