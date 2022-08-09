@@ -215,7 +215,7 @@ test("lerp", () => {
   var a = lerp(80n, 320n, 0.20);
   expect(a).toBe(128n);
   var a = lerp(80n, 320n, 0.32);
-  expect(a).toBe(157n);
+  expect(a).toBe(156n);
 });
 // - https://processing.org/reference/lerp_.html
 

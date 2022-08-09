@@ -190,7 +190,7 @@ export {remap as map};
  * @returns ∈ [x, y]
  */
  export function lerp(x: bigint, y: bigint, t: number): bigint {
-  return x + BigInt(Math.round(t*Number(y - x)));
+  return x + BigInt(Math.floor(t*Number(y - x)));
 }
 // - https://processing.org/reference/lerp_.html
 // - https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html
