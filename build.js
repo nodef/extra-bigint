@@ -12,9 +12,11 @@ const LOCATIONS = [
 
 
 // Get keywords for main/sub package.
-function keywords(ds) {
-  var m = build.readMetadata('.');
-  var s = new Set([...m.keywords, ...ds.map(d => d.name)]);
+function keywords(ds, less=false) {
+  var rkind = /namespace|function/i;
+  var ds = less? ds.filter(d => rkind.test(d.kind)) : ds;
+  var m  = build.readMetadata('.');
+  var s  = new Set([...m.keywords, ...ds.map(d => d.name)]);
   return Array.from(s);
 }
 
@@ -46,6 +48,7 @@ function publishRootPackage(ds, ver, typ) {
 function transformJsdoc(x, dm) {
   if (!dm.has(x.name)) return null;
   var link = `[📘](https://github.com/${owner}/${repo}/wiki/${x.name})`;
+  x.description = x.description.replace(/\[📘\]\(.+?\)/g, '');
   x.description = x.description.trim() + '\n' + link;
   return x;
 }
@@ -74,7 +77,7 @@ function publishRootPackages(ds, ver) {
 
 // Publish docs.
 function publishDocs(ds) {
-  build.updateGithubRepoDetails({topics: keywords(ds)});
+  build.updateGithubRepoDetails({owner, repo, topics: keywords(ds, true)});
   build.generateDocs(`src/${srcts}`);
   build.publishDocs();
 }
