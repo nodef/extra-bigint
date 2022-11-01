@@ -370,6 +370,9 @@ export function properDivisors(x: bigint): bigint[] {
     if (x % i===0n) a.push(i);
   return a;
 }
+export {properDivisors as aliquotParts};
+// - https://mathworld.wolfram.com/ProperDivisor.html
+// - https://en.wikipedia.org/wiki/Divisor#Further_notions_and_facts
 
 
 /**
