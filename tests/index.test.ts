@@ -1,50 +1,52 @@
 import * as vigint from "../src";
-import {is}             from "../src";
-import {compare}        from "../src";
-import {abs}            from "../src";
-import {sign}           from "../src";
-import {floorDiv}       from "../src";
-import {ceilDiv}        from "../src";
-import {roundDiv}       from "../src";
-import {rem}            from "../src";
-import {mod}            from "../src";
-import {modp}           from "../src";
-import {constrain}      from "../src";
-import {remap}          from "../src";
-import {lerp}           from "../src";
-import {isPow2}         from "../src";
-import {isPow10}        from "../src";
-import {prevPow2}       from "../src";
-import {prevPow10}      from "../src";
-import {nextPow2}       from "../src";
-import {nextPow10}      from "../src";
-import {log2}           from "../src";
-import {log10}          from "../src";
-import {sqrt}           from "../src";
-import {cbrt}           from "../src";
-import {root}           from "../src";
-import {properDivisors} from "../src";
-import {aliquotSum}     from "../src";
-import {isPrime}        from "../src";
-import {gcd}            from "../src";
-import {lcm}            from "../src";
-import {factorial}      from "../src";
-import {binomial}       from "../src";
-import {multinomial}    from "../src";
-import {hypot}          from "../src";
-import {sum}            from "../src";
-import {product}        from "../src";
-import {median}         from "../src";
-import {modes}          from "../src";
-import {min}            from "../src";
-import {max}            from "../src";
-import {range}          from "../src";
-import {variance}       from "../src";
-import {arithmeticMean} from "../src";
-import {geometricMean}  from "../src";
-import {harmonicMean}   from "../src";
-import {quadriaticMean} from "../src";
-import {cubicMean}      from "../src";
+import {
+  is,
+  compare,
+  abs,
+  sign,
+  floorDiv,
+  ceilDiv,
+  roundDiv,
+  rem,
+  mod,
+  modp,
+  constrain,
+  remap,
+  lerp,
+  isPow2,
+  isPow10,
+  prevPow2,
+  prevPow10,
+  nextPow2,
+  nextPow10,
+  log2,
+  log10,
+  sqrt,
+  cbrt,
+  root,
+  properDivisors,
+  aliquotSum,
+  isPrime,
+  gcd,
+  lcm,
+  factorial,
+  binomial,
+  multinomial,
+  hypot,
+  sum,
+  product,
+  median,
+  modes,
+  min,
+  max,
+  range,
+  variance,
+  arithmeticMean,
+  geometricMean,
+  harmonicMean,
+  quadriaticMean,
+  cubicMean,
+} from "../src";
 
 
 
