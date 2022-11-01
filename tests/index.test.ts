@@ -26,6 +26,7 @@ import {
   root,
   properDivisors,
   aliquotSum,
+  minPrimeFactor,
   isPrime,
   gcd,
   lcm,
@@ -336,6 +337,20 @@ test("aliquotSum", () => {
   expect(a).toBe(0n);
   var a = aliquotSum(-24n);
   expect(a).toBe(36n);  // (1+2+3+4+6+8+12)
+});
+
+
+test("minPrimeFactor", () => {
+  var a = minPrimeFactor(1n);
+  expect(a).toBe(0n);
+  var a = minPrimeFactor(3n);
+  expect(a).toBe(3n);
+  var a = minPrimeFactor(21n);
+  expect(a).toBe(3n);
+  var a = minPrimeFactor(55n);
+  expect(a).toBe(5n);
+  var a = minPrimeFactor(53n);
+  expect(a).toBe(53n);
 });
 
 

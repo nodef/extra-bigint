@@ -389,20 +389,36 @@ export function aliquotSum(x: bigint): bigint {
 
 
 /**
+ * Find the least prime number which divides a bigint.
+ * @param x a bigint
+ * @returns least prime factor
+ */
+export function minPrimeFactor(x: bigint): bigint {
+  var x = abs(x);
+  // 1. LPF of 2, 3 is the number itself.
+  if (x<=1n) return 0n;
+  if (x<=3n) return x;
+  // 2. LPF for multiples of 2, 3.
+  if (x % 2n===0n) return 2n;
+  if (x % 3n===0n) return 3n;
+  // 3. LPF can be 6k-1 or 6k+1.
+  for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n) {
+    if (x % (i-1n)===0n) return i-1n;
+    if (x % (i+1n)===0n) return i+1n;
+  }
+  return x;
+}
+export {minPrimeFactor as leastPrimeFactor};
+// - https://mathworld.wolfram.com/LeastPrimeFactor.html
+
+
+/**
  * Check if bigint is prime.
  * @param x a bigint
  * @returns is divisible by 1n and itself only?
  */
 export function isPrime(x: bigint): boolean {
-  var x = abs(x);
-  // 1. 2, 3 are prime
-  if (x<=3n) return x>1n;
-  // 2. Multiples of 2, 3 not prime
-  if (x % 2n===0n || x % 3n===0n) return false;
-  // 3. Factor of 6k-1 or 6k+1 => not prime
-  for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n)
-    if (x % (i-1n)===0n || x % (i+1n)===0n) return false;
-  return true;
+  return x!==0n && minPrimeFactor(x) === abs(x);
 }
 
 
