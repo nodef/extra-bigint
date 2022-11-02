@@ -175,7 +175,7 @@ export {constrain as clamp};
  * @param T upper bound of target range
  * @returns ∈ [ymin, ymax]
  */
- export function remap(x: bigint, r: bigint, R: bigint, t: bigint, T: bigint): bigint {
+export function remap(x: bigint, r: bigint, R: bigint, t: bigint, T: bigint): bigint {
   return t + (x - r)*(T - t)/(R - r);
 }
 export {remap as map};
@@ -189,7 +189,7 @@ export {remap as map};
  * @param t interpolant ∈ [0, 1]
  * @returns ∈ [x, y]
  */
- export function lerp(x: bigint, y: bigint, t: number): bigint {
+export function lerp(x: bigint, y: bigint, t: number): bigint {
   return x + BigInt(Math.floor(t*Number(y - x)));
 }
 // - https://processing.org/reference/lerp_.html
@@ -299,16 +299,6 @@ export function log10(x: bigint): bigint {
 // ROOT
 // ----
 
-function sqrtPos(x: bigint): bigint {
-  var a = 1n << (log2(x)/2n + 1n);  // initial guess
-  var b = 1n + a;
-  while (a<b) {
-    b = a;
-    a = (b + x/b)/2n;
-  }
-  return b;
-}
-
 /**
  * Find the square root of a bigint.
  * @param x a bigint
@@ -317,6 +307,16 @@ function sqrtPos(x: bigint): bigint {
 export function sqrt(x: bigint): bigint {
   if (x===0n) return 0n;
   return x>0n? sqrtPos(x) : null;
+}
+
+function sqrtPos(x: bigint): bigint {
+  var a = 1n << (log2(x)/2n + 1n);  // initial guess
+  var b = 1n + a;
+  while (a<b) {
+    b = a;
+    a = (b + x/b)/2n;
+  }
+  return b;
 }
 
 
@@ -330,17 +330,6 @@ export function cbrt(x: bigint): bigint {
 }
 
 
-function rootPos(x: bigint, n: bigint): bigint {
-  var a = 1n << (log2(x)/n + 1n);  // initial guess
-  var b = 1n + a, m = n - 1n;
-  if (a===2n) return 1n;
-  while (a<b) {
-    b = a;
-    a = (m*b + x/b**m)/n;
-  }
-  return b;
-}
-
 /**
  * Find the nth root of a bigint.
  * @param x a bigint
@@ -351,6 +340,17 @@ export function root(x: bigint, n: bigint=1n): bigint {
   if (x===0n) return 0n;
   else if (x>0n) return rootPos(x, n);
   return n % 2n!==0n?  -rootPos(-x, n) : null;
+}
+
+function rootPos(x: bigint, n: bigint): bigint {
+  var a = 1n << (log2(x)/n + 1n);  // initial guess
+  var b = 1n + a, m = n - 1n;
+  if (a===2n) return 1n;
+  while (a<b) {
+    b = a;
+    a = (m*b + x/b**m)/n;
+  }
+  return b;
 }
 
 
@@ -485,18 +485,6 @@ export function isPrime(x: bigint): boolean {
 }
 
 
-// Find the greatest common divisor of a pair of bigints.
-function gcdPair(x: bigint, y: bigint): bigint {
-  while (y!==0n) {
-    var t = y;
-    y = x % y;
-    x = t;
-  }
-  return x;
-}
-// - https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/
-// - https://en.wikipedia.org/wiki/Euclidean_algorithm
-
 /**
  * Find the greatest common divisor of bigints.
  * @param xs a list of bigints
@@ -509,6 +497,18 @@ export function gcd(...xs: bigint[]): bigint {
   return a;
 }
 export {gcd as hcf};
+
+// Find the greatest common divisor of a pair of bigints.
+function gcdPair(x: bigint, y: bigint): bigint {
+  while (y!==0n) {
+    var t = y;
+    y = x % y;
+    x = t;
+  }
+  return x;
+}
+// - https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/
+// - https://en.wikipedia.org/wiki/Euclidean_algorithm
 
 
 /**
@@ -649,6 +649,18 @@ export function median(...xs: bigint[]): bigint {
 // - https://en.wikipedia.org/wiki/Median
 
 
+/**
+ * Find the values that appear most often.
+ * @param xs a list of bigints
+ * @returns [xₘ₁, xₘ₂, ...] | count(xₘᵢ) ≥ count(xᵢ) ∀ xᵢ ∈ xs
+ */
+export function modes(...xs: bigint[]): bigint[] {
+  xs.sort(compare);
+  var r = maxRepeat(xs);
+  return getRepeats(xs, r);
+}
+// - https://en.wikipedia.org/wiki/Mode_(statistics)
+
 // Get the maximum number of times any bigint has repeated in a sorted array.
 function maxRepeat(xs: bigint[]): number {
   var count = Math.min(xs.length, 1), max = count;
@@ -666,18 +678,6 @@ function getRepeats(xs: bigint[], r: number): bigint[] {
     if (xs[i]===xs[i+r]) a.push(xs[i+=r]);
   return a;
 }
-
-/**
- * Find the values that appear most often.
- * @param xs a list of bigints
- * @returns [xₘ₁, xₘ₂, ...] | count(xₘᵢ) ≥ count(xᵢ) ∀ xᵢ ∈ xs
- */
-export function modes(...xs: bigint[]): bigint[] {
-  xs.sort(compare);
-  var r = maxRepeat(xs);
-  return getRepeats(xs, r);
-}
-// - https://en.wikipedia.org/wiki/Mode_(statistics)
 
 
 /**
