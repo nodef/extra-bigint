@@ -1,10 +1,10 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import cleanup from "rollup-plugin-cleanup";
-import dts from "rollup-plugin-dts";
+const resolve = require('@rollup/plugin-node-resolve').default;
+const commonjs = require('@rollup/plugin-commonjs').default;
+const cleanup = require('rollup-plugin-cleanup');
+const dts = require('rollup-plugin-dts').default;
 
 
-export default [{
+module.exports = [{
   input: ".build/index.d.ts",
   output: {
     file: "index.d.ts",
