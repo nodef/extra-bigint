@@ -443,6 +443,39 @@ export {maxPrimeFactor as greatestPrimeFactor};
 
 
 /**
+ * Find the prime factors of a bigint.
+ * @param x a bigint
+ * @returns [f₀, f₁, ...] | fᵢ divides x and is prime
+ */
+export function primeFactors(x: bigint): bigint[] {
+  var x = abs(x), a = [];
+  if (x<=1n) return [];
+  if (x<=3n) return [x];
+  // 2. Try factors 2, 3.
+  x = pushPrimeFactorTo$(a, x, 2n);
+  x = pushPrimeFactorTo$(a, x, 3n);
+  // 3. Try factors 6k-1, 6k+1.
+  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+    x = pushPrimeFactorTo$(a, x, i-1n);
+    x = pushPrimeFactorTo$(a, x, i+1n);
+  }
+  if (x>1n) a.push(x);
+  return a;
+}
+
+function pushPrimeFactorTo$(a: bigint[], x: bigint, f: bigint): bigint {
+  if (x % f!==0n) return x;
+  x /= f;
+  a.push(f);
+  while (x % f===0n)
+    x /= f;
+  return x;
+}
+// - https://www.geeksforgeeks.org/prime-factors-big-number/
+// - https://mathworld.wolfram.com/PrimeFactor.html
+
+
+/**
  * Check if bigint is prime.
  * @param x a bigint
  * @returns is divisible by 1n and itself only?
