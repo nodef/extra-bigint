@@ -27,6 +27,7 @@ import {
   properDivisors,
   aliquotSum,
   minPrimeFactor,
+  maxPrimeFactor,
   isPrime,
   gcd,
   lcm,
@@ -350,6 +351,20 @@ test("minPrimeFactor", () => {
   var a = minPrimeFactor(55n);
   expect(a).toBe(5n);
   var a = minPrimeFactor(53n);
+  expect(a).toBe(53n);
+});
+
+
+test("maxPrimeFactor", () => {
+  var a = maxPrimeFactor(1n);
+  expect(a).toBe(0n);
+  var a = maxPrimeFactor(3n);
+  expect(a).toBe(3n);
+  var a = maxPrimeFactor(21n);
+  expect(a).toBe(7n);
+  var a = maxPrimeFactor(55n);
+  expect(a).toBe(11n);
+  var a = maxPrimeFactor(53n);
   expect(a).toBe(53n);
 });
 

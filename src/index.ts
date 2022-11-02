@@ -413,6 +413,36 @@ export {minPrimeFactor as leastPrimeFactor};
 
 
 /**
+ * Find the greatest prime number which divides a bigint.
+ * @param x a bigint
+ * @returns greatest prime factor
+ */
+export function maxPrimeFactor(x: bigint): bigint {
+  var x = abs(x), a = 0n;
+  // 1. GPF of 2, 3 is the number itself.
+  if (x<=1n) return 0n;
+  if (x<=3n) return x;
+  // 2. Remove factors 2, 3.
+  for (; x % 2n===0n; a=2n)
+    x /= 2n;
+  for (; x % 3n===0n; a=3n)
+    x /= 3n;
+  // 3. Remove factors 6k-1, 6k+1.
+  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+    for (; x % (i-1n)==0n; a=i-1n)
+      x /= i-1n;
+    for (; x % (i+1n)==0n; a=i+1n)
+      x /= i+1n;
+  }
+  if (x<=1n) return a;
+  return x;
+}
+export {maxPrimeFactor as greatestPrimeFactor};
+// - https://mathworld.wolfram.com/GreatestPrimeFactor.html
+// - https://www.geeksforgeeks.org/find-largest-prime-factor-number/
+
+
+/**
  * Check if bigint is prime.
  * @param x a bigint
  * @returns is divisible by 1n and itself only?
