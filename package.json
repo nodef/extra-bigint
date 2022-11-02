@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "A collection of functions for working with BigInts.",
   "sideEffects": false,
   "main": "index.js",
