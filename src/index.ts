@@ -223,46 +223,50 @@ export function isPow10(x: bigint): boolean {
 
 
 /**
- * Find previous power-of-2 of a bigint.
+ * Find largest power-of-2 less than or equal to given bigint.
  * @param x a bigint
- * @returns 2ⁱ | 2ⁱ < x and 2ⁱ ≥ x/2
+ * @returns 2ⁱ | 2ⁱ ≤ x and 2ⁱ > x/2
  */
 export function prevPow2(x: bigint): bigint {
-  var n = (abs(x) - 1n).toString(2).length - 1;
-  return n<=0? 0n : BigInt("0b1"+"0".repeat(n));
+  if (x<=1n) return 0n;
+  var n = x.toString(2).length;
+  return BigInt("0b1" + "0".repeat(n-1));
 }
 
 
 /**
- * Find previous power-of-10 of a bigint.
+ * Find largest power-of-10 less than or equal to given bigint.
  * @param x a bigint
- * @returns 10ⁱ | 10ⁱ < x and 10ⁱ ≥ x/10
+ * @returns 10ⁱ | 10ⁱ ≤ x and 10ⁱ > x/10
  */
 export function prevPow10(x: bigint): bigint {
-  var n = (abs(x) - 1n).toString().length - 1;
-  return x<=0? 0n : BigInt("1"+"0".repeat(n));
+  if (x<=1n) return 0n;
+  var n = x.toString(10).length;
+  return BigInt("1" + "0".repeat(n-1));
 }
 
 
 /**
- * Find next power-of-2 of a bigint.
+ * Find smallest power-of-2 greater than or equal to given bigint.
  * @param x a bigint
- * @returns 2ⁱ | 2ⁱ > x and 2ⁱ ≤ 2x
+ * @returns 2ⁱ | 2ⁱ ≥ x and 2ⁱ < 2x
  */
 export function nextPow2(x: bigint): bigint {
-  var n = abs(x).toString(2).length - 1;
-  return x<=0n? 1n : BigInt("0b1"+"0".repeat(n+1));
+  if (x<=0n) return 1n;
+  var n = (x-1n).toString(2).length;
+  return BigInt("0b1" + "0".repeat(n));
 }
 
 
 /**
- * Find next power-of-10 of a bigint.
+ * Find smallest power-of-10 greater than or equal to given bigint.
  * @param x a bigint
- * @returns 10ⁱ | 10ⁱ > x and 10ⁱ ≤ 10x
+ * @returns 10ⁱ | 10ⁱ ≥ x and 10ⁱ < 10x
  */
 export function nextPow10(x: bigint): bigint {
-  var n = abs(x).toString().length - 1;
-  return x<=0n? 1n : BigInt("1"+"0".repeat(n+1));
+  if (x<=0n) return 1n;
+  var n = (x-1n).toString(10).length;
+  return BigInt("1" + "0".repeat(n));
 }
 
 

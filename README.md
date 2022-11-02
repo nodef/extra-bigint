@@ -85,10 +85,10 @@ bigint.mean(1n, 7n, 8n);
 |  |  |
 | [isPow2] | Check if bigint is a power-of-2. |
 | [isPow10] | Check if bigint is a power-of-10. |
-| [prevPow2] | Find previous power-of-2 of a bigint. |
-| [prevPow10] | Find previous power-of-10 of a bigint. |
-| [nextPow2] | Find next power-of-2 of a bigint. |
-| [nextPow10] | Find next power-of-10 of a bigint. |
+| [prevPow2] | Find largest power-of-2 less than or equal to given bigint. |
+| [prevPow10] | Find largest power-of-10 less than or equal to given bigint. |
+| [nextPow2] | Find smallest power-of-2 greater than or equal to given bigint. |
+| [nextPow10] | Find smallest power-of-10 greater than or equal to given bigint. |
 | [log2] | Find the base-2 logarithm of a bigint. |
 | [log10] | Find the base-10 logarithm of a bigint. |
 |  |  |

@@ -244,7 +244,7 @@ test("isPow10", () => {
 
 test("prevPow2", () => {
   var a = prevPow2(32n);
-  expect(a).toBe(16n);
+  expect(a).toBe(32n);
   var a = prevPow2(1023n);
   expect(a).toBe(512n);
 });
@@ -252,7 +252,7 @@ test("prevPow2", () => {
 
 test("prevPow10", () => {
   var a = prevPow10(10n);
-  expect(a).toBe(1n);
+  expect(a).toBe(10n);
   var a = prevPow10(999n);
   expect(a).toBe(100n);
 });
@@ -260,7 +260,7 @@ test("prevPow10", () => {
 
 test("nextPow2", () => {
   var a = nextPow2(32n);
-  expect(a).toBe(64n);
+  expect(a).toBe(32n);
   var a = nextPow2(1023n);
   expect(a).toBe(1024n);
 });
@@ -268,7 +268,7 @@ test("nextPow2", () => {
 
 test("nextPow10", () => {
   var a = nextPow10(10n);
-  expect(a).toBe(100n);
+  expect(a).toBe(10n);
   var a = nextPow10(999n);
   expect(a).toBe(1000n);
 });
