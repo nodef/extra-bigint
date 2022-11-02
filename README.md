@@ -98,6 +98,9 @@ bigint.mean(1n, 7n, 8n);
 |  |  |
 | [properDivisors] | List all divisors of a bigint, except itself. |
 | [aliquotSum] | Sum all proper divisors of a bigint. |
+| [minPrimeFactor] | Find the least prime number which divides a bigint. |
+| [maxPrimeFactor] | Find the greatest prime number which divides a bigint. |
+| [primeFactors] | Find the prime factors of a bigint. |
 | [isPrime] | Check if bigint is prime. |
 | [gcd] | Find the greatest common divisor of bigints. |
 | [lcm] | Find the least common multiple of bigints. |
@@ -161,6 +164,9 @@ bigint.mean(1n, 7n, 8n);
 [root]: https://nodef.github.io/extra-bigint/functions/root.html
 [properDivisors]: https://nodef.github.io/extra-bigint/functions/properDivisors.html
 [aliquotSum]: https://nodef.github.io/extra-bigint/functions/aliquotSum.html
+[minPrimeFactor]: https://nodef.github.io/extra-bigint/functions/minPrimeFactor.html
+[maxPrimeFactor]: https://nodef.github.io/extra-bigint/functions/maxPrimeFactor.html
+[primeFactors]: https://nodef.github.io/extra-bigint/functions/primeFactors.html
 [isPrime]: https://nodef.github.io/extra-bigint/functions/isPrime.html
 [gcd]: https://nodef.github.io/extra-bigint/functions/gcd.html
 [lcm]: https://nodef.github.io/extra-bigint/functions/lcm.html
