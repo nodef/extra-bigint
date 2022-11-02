@@ -465,13 +465,49 @@ export function primeFactors(x: bigint): bigint[] {
 
 function pushPrimeFactorTo$(a: bigint[], x: bigint, f: bigint): bigint {
   if (x % f!==0n) return x;
-  x /= f;
-  a.push(f);
-  while (x % f===0n)
+  do {
     x /= f;
+  } while (x % f===0n);
+  a.push(f);
   return x;
 }
 // - https://www.geeksforgeeks.org/prime-factors-big-number/
+// - https://mathworld.wolfram.com/PrimeFactor.html
+
+
+/**
+ * Find the prime factors and respective exponents of a bigint.
+ * @param x a bigint
+ * @returns [[f₀, e₀], [f₁, e₁], ...] | fᵢ is a prime factor of x and eᵢ is its exponent
+ */
+export function primeExponentials(x: bigint): [bigint, bigint][] {
+  var x = abs(x), a = [];
+  if (x<=1n) return [];
+  if (x<=3n) return [[x, 1n]];
+  // 2. Try factors 2, 3.
+  x = pushPrimeExponentialTo$(a, x, 2n);
+  x = pushPrimeExponentialTo$(a, x, 3n);
+  // 3. Try factors 6k-1, 6k+1.
+  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+    x = pushPrimeExponentialTo$(a, x, i-1n);
+    x = pushPrimeExponentialTo$(a, x, i+1n);
+  }
+  if (x>1n) a.push([x, 1n]);
+  return a;
+}
+
+function pushPrimeExponentialTo$(a: [bigint, bigint][], x: bigint, f: bigint): bigint {
+  if (x % f!==0n) return x;
+  var e = 0n;
+  do {
+    x /= f; ++e;
+  } while (x % f===0n);
+  a.push([f, e]);
+  return x;
+}
+// - https://www.geeksforgeeks.org/prime-factors-big-number/
+// - https://reference.wolfram.com/language/ref/FactorInteger.html
+// - https://mathworld.wolfram.com/PrimeFactorization.html
 // - https://mathworld.wolfram.com/PrimeFactor.html
 
 

@@ -29,6 +29,7 @@ import {
   minPrimeFactor,
   maxPrimeFactor,
   primeFactors,
+  primeExponentials,
   isPrime,
   gcd,
   lcm,
@@ -381,6 +382,20 @@ test("primeFactors", () => {
   expect(a).toStrictEqual([5n, 11n]);
   var a = primeFactors(53n);
   expect(a).toStrictEqual([53n]);
+});
+
+
+test("primeExponentials", () => {
+  var a = primeExponentials(1n);
+  expect(a).toStrictEqual([]);
+  var a = primeExponentials(9n);
+  expect(a).toStrictEqual([[3n, 2n]]);
+  var a = primeExponentials(63n);
+  expect(a).toStrictEqual([[3n, 2n], [7n, 1n]]);
+  var a = primeExponentials(605n);
+  expect(a).toStrictEqual([[5n, 1n], [11n, 2n]]);
+  var a = primeExponentials(53n);
+  expect(a).toStrictEqual([[53n, 1n]]);
 });
 
 
