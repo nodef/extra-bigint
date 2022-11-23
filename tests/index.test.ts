@@ -88,6 +88,9 @@ test("example1", () => {
 
 
 
+// ABOUT
+// -----
+
 test("is", () => {
   var a = is(314n);
   expect(a).toBe(true);
@@ -102,6 +105,11 @@ test("is", () => {
 });
 
 
+
+
+// COMPARE
+// -------
+
 test("compare", () => {
   var a = compare(10n, 12n);
   expect(a).toBeLessThan(0);
@@ -111,6 +119,11 @@ test("compare", () => {
   expect(a).toBeGreaterThan(0);
 });
 
+
+
+
+// SIGN
+// ----
 
 test("abs", () => {
   var a = abs(-2n);
@@ -131,6 +144,11 @@ test("sign", () => {
   expect(a).toBe(1n);
 });
 
+
+
+
+// ROUNDED DIVISION
+// ----------------
 
 test("floorDiv", () => {
   var a = floorDiv(15n, 4n);
@@ -165,6 +183,11 @@ test("roundDiv", () => {
 // - https://www.learndatasci.com/solutions/python-double-slash-operator-floor-division/
 
 
+
+
+// MODULO
+// ------
+
 test("rem", () => {
   var a = rem(1n, 10n);
   expect(a).toBe(1n);
@@ -194,6 +217,11 @@ test("modp", () => {
   expect(a).toBe(1n);
 });
 
+
+
+
+// RANGE CONTROL
+// -------------
 
 test("constrain", () => {
   var a = constrain(20n, 0n, 50n);
@@ -225,6 +253,11 @@ test("lerp", () => {
 });
 // - https://processing.org/reference/lerp_.html
 
+
+
+
+// POWER / LOGARITHM
+// -----------------
 
 test("isPow2", () => {
   var a = isPow2(32n);
@@ -290,6 +323,11 @@ test("log10", () => {
 });
 
 
+
+
+// ROOT
+// ----
+
 test("sqrt", () => {
   var a = sqrt(81n);
   expect(a).toBe(9n);
@@ -318,6 +356,11 @@ test("root", () => {
 });
 // - https://en.wikipedia.org/wiki/Nth_root
 
+
+
+
+// DIVISORS
+// --------
 
 test("properDivisors", () => {
   var a = properDivisors(6n);
@@ -437,6 +480,11 @@ test("lcm", () => {
 });
 
 
+
+
+// ARRANGEMENTS
+// ------------
+
 test("factorial", () => {
   var a = factorial(5n);
   expect(a).toBe(120n);
@@ -474,6 +522,11 @@ test("multinomial", () => {
 });
 
 
+
+
+// GEOMETRY
+// --------
+
 test("hypot", () => {
   var a = hypot(3n, 4n);
   expect(a).toBe(5n);
@@ -483,6 +536,11 @@ test("hypot", () => {
   expect(a).toBe(10n);
 });
 
+
+
+
+// STATISTICS
+// ----------
 
 test("sum", () => {
   var a = sum(1n, 2n);
@@ -563,6 +621,11 @@ test("variance", () => {
   expect(a).toBe(BigInt(Math.floor(1.25)));
 });
 
+
+
+
+// MEAN (STATISTICS)
+// -----------------
 
 test("arithmeticMean", () => {
   var a = arithmeticMean(1n, 2n);
