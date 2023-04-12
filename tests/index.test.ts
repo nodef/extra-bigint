@@ -1,4 +1,4 @@
-import * as vigint from "../src";
+import * as xbigint from "../src";
 import {
   is,
   compare,
@@ -56,31 +56,31 @@ import {
 
 
 test("example1", () => {
-  var b = vigint.isPrime(113n);
+  var b = xbigint.isPrime(113n);
   expect(b).toBe(true);
   // → true
 
-  var a = vigint.floorDiv(7n, 3n);
+  var a = xbigint.floorDiv(7n, 3n);
   expect(a).toBe(2n);
   // → 2n
 
-  var a = vigint.sqrt(81n);
+  var a = xbigint.sqrt(81n);
   expect(a).toBe(9n);
   // → 9n
 
-  var a = vigint.lcm(2n, 3n, 4n);
+  var a = xbigint.lcm(2n, 3n, 4n);
   expect(a).toBe(12n);
   // → 12n
 
-  var a = vigint.log2(8n);
+  var a = xbigint.log2(8n);
   expect(a).toBe(3n);
   // → 3n
 
-  var a = vigint.sum(1n, 2n, 3n, 4n);
+  var a = xbigint.sum(1n, 2n, 3n, 4n);
   expect(a).toBe(10n);
   // → 10n
 
-  var a = vigint.mean(1n, 7n, 8n);
+  var a = xbigint.mean(1n, 7n, 8n);
   expect(a).toBe(5n);
   // → 5n
 });

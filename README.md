@@ -1,24 +1,24 @@
-A collection of functions for working with BigInts.<br>
+A [BigInt] can represent whole numbers larger than 2⁵³ - 1 [(1)].<br>
 📦 [Node.js](https://www.npmjs.com/package/extra-bigint),
 🌐 [Web](https://www.npmjs.com/package/extra-bigint.web),
 📜 [Files](https://unpkg.com/extra-bigint/),
 📰 [Docs](https://nodef.github.io/extra-bigint/),
 📘 [Wiki](https://github.com/nodef/extra-bigint/wiki/).
 
-A [BigInt] can represent whole numbers larger than 2⁵³ - 1 [(1)]. *ES2020*
-introduced it as a built-in object. `BigInt` enables us to represent integers
-with arbitrary precision, allowing us to perform mathematical operations on
-large integers [(2)]. This package includes common bigint functions related to
-querying **about** numbers, **comparing** numbers, performing **rounded
-division**, performing **modulo** operations, **controlling range** of numbers,
-performing **arithmetic** operations, obtaining **divisors** of a number (and
-related operations), getting the number of possible **arrangements** of a set of
-objects, performing **geometry**-related calculations, performing basic
-**statistical** analysis, and finding various **statistical means**.
+*ES2020* introduced **BigInt** as a built-in object. **BigInt** enables us to
+represent integers with arbitrary precision, allowing us to perform mathematical
+operations on large integers [(2)]. This package includes common bigint
+functions related to querying **about** numbers, **comparing** numbers,
+performing **rounded division**, performing **modulo** operations, **controlling**
+**range** of numbers, performing **arithmetic** operations, obtaining **divisors**
+of a number (and related operations), getting the number of possible
+**arrangements** of a set of objects, performing **geometry**-related
+calculations, performing basic **statistical** analysis, and finding various
+**statistical means**.
 
-This package is available in *Node.js* and *Web* formats. The web format
-is exposed as `extra_bigint` standalone variable and can be loaded from
-[jsDelivr CDN].
+This package is available in *Node.js* and *Web* formats. To use it on the web,
+simply use the `extra_bigint` global variable after loading with a `<script>`
+tag from the [jsDelivr CDN].
 
 > Stability: [Experimental](https://www.youtube.com/watch?v=L1j93RnIxEo).
 
@@ -30,29 +30,29 @@ is exposed as `extra_bigint` standalone variable and can be loaded from
 <br>
 
 ```javascript
-const bigint = require('extra-bigint');
-// import * as bigint from "extra-bigint";
-// import * as bigint from "https://unpkg.com/extra-bigint/index.mjs"; (deno)
+const xbigint = require('extra-bigint');
+// import * as xbigint from "extra-bigint";
+// import * as xbigint from "https://unpkg.com/extra-bigint/index.mjs"; (deno)
 
-bigint.isPrime(113n);
+xbigint.isPrime(113n);
 // → true
 
-bigint.floorDiv(7n, 3n);
+xbigint.floorDiv(7n, 3n);
 // → 2n
 
-bigint.sqrt(81n);
+xbigint.sqrt(81n);
 // → 9n
 
-bigint.lcm(2n, 3n, 4n);
+xbigint.lcm(2n, 3n, 4n);
 // → 12n
 
-bigint.log2(8n);
+xbigint.log2(8n);
 // → 3n
 
-bigint.sum(1n, 2n, 3n, 4n);
+xbigint.sum(1n, 2n, 3n, 4n);
 // → 10n
 
-bigint.mean(1n, 7n, 8n);
+xbigint.mean(1n, 7n, 8n);
 // → 5n
 ```
 
