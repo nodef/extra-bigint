@@ -1,6 +1,6 @@
 {
   "name": "extra-bigint",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A BigInt can represent whole numbers larger than 2⁵³ - 1.",
   "sideEffects": false,
   "main": "index.js",
@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/nodef/extra-bigint#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@types/jest": "^29.5.0",
-    "extra-build": "^2.2.42",
-    "jest": "^29.5.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/jest": "^29.5.6",
+    "extra-build": "^2.2.43",
+    "jest": "^29.7.0",
     "rollup-plugin-cleanup": "^3.2.1",
-    "rollup-plugin-dts": "^5.3.0",
-    "ts-jest": "^29.1.0"
+    "rollup-plugin-dts": "^6.1.0",
+    "ts-jest": "^29.1.1"
   }
 }
