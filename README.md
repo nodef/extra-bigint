@@ -137,7 +137,7 @@ xbigint.mean(1n, 7n, 8n);
 [![Coverage Status](https://coveralls.io/repos/github/nodef/extra-bigint/badge.svg?branch=master)](https://coveralls.io/github/nodef/extra-bigint?branch=master)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/test_coverage)](https://codeclimate.com/github/nodef/extra-bigint/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/maintainability)](https://codeclimate.com/github/nodef/extra-bigint/maintainability)
-
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-bigint)
 
 [is]: https://github.com/nodef/extra-bigint/wiki/is
 [compare]: https://github.com/nodef/extra-bigint/wiki/compare
