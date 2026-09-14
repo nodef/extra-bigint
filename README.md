@@ -1,9 +1,9 @@
 A [BigInt] can represent whole numbers larger than 2⁵³ - 1 [(1)].<br>
-📦 [Node.js](https://www.npmjs.com/package/extra-bigint),
-🌐 [Web](https://www.npmjs.com/package/extra-bigint.web),
-📜 [Files](https://unpkg.com/extra-bigint/),
-📰 [Docs](https://nodef.github.io/extra-bigint/),
-📘 [Wiki](https://github.com/nodef/extra-bigint/wiki/).
+
+▌
+📦 [JSR](https://jsr.io/@nodef/extra-bigint),
+📦 [NPM](https://www.npmjs.com/package/extra-bigint),
+📰 [Docs](https://jsr.io/@nodef/extra-bigint/doc).
 
 *ES2020* introduced **BigInt** as a built-in object. **BigInt** enables us to
 represent integers with arbitrary precision, allowing us to perform mathematical
@@ -16,23 +16,14 @@ of a number (and related operations), getting the number of possible
 calculations, performing basic **statistical** analysis, and finding various
 **statistical means**.
 
-This package is available in *Node.js* and *Web* formats. To use it on the web,
-simply use the `extra_bigint` global variable after loading with a `<script>`
-tag from the [jsDelivr CDN].
-
-> Stability: [Experimental](https://www.youtube.com/watch?v=L1j93RnIxEo).
-
 [BigInt]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 [(1)]: https://www.geeksforgeeks.org/bigint-in-javascript/
 [(2)]: https://www.smashingmagazine.com/2019/07/essential-guide-javascript-newest-data-type-bigint/
-[jsDelivr CDN]: https://cdn.jsdelivr.net/npm/extra-bigint.web/index.js
 
 <br>
 
 ```javascript
-const xbigint = require('extra-bigint');
-// import * as xbigint from "extra-bigint";
-// import * as xbigint from "https://unpkg.com/extra-bigint/index.mjs"; (deno)
+import * as xbigint from "jsr:@nodef/extra-bigint";
 
 xbigint.isPrime(113n);
 // → true
@@ -131,61 +122,58 @@ xbigint.mean(1n, 7n, 8n);
 <br>
 
 
-[![](https://img.youtube.com/vi/RJS3Z2DYEO4/maxresdefault.jpg)](https://www.youtube.com/watch?v=RJS3Z2DYEO4)<br>
+[![](https://raw.githubusercontent.com/qb40/designs/gh-pages/0/image/11.png)](https://wolfram77.github.io)<br>
 [![ORG](https://img.shields.io/badge/org-nodef-green?logo=Org)](https://nodef.github.io)
-[![DOI](https://zenodo.org/badge/274701321.svg)](https://zenodo.org/badge/latestdoi/274701321)
-[![Coverage Status](https://coveralls.io/repos/github/nodef/extra-bigint/badge.svg?branch=master)](https://coveralls.io/github/nodef/extra-bigint?branch=master)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/test_coverage)](https://codeclimate.com/github/nodef/extra-bigint/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7efb0a005561ff8b1df7/maintainability)](https://codeclimate.com/github/nodef/extra-bigint/maintainability)
 ![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/extra-bigint)
 
-[is]: https://github.com/nodef/extra-bigint/wiki/is
-[compare]: https://github.com/nodef/extra-bigint/wiki/compare
-[abs]: https://github.com/nodef/extra-bigint/wiki/abs
-[sign]: https://github.com/nodef/extra-bigint/wiki/sign
-[floorDiv]: https://github.com/nodef/extra-bigint/wiki/floorDiv
-[ceilDiv]: https://github.com/nodef/extra-bigint/wiki/ceilDiv
-[roundDiv]: https://github.com/nodef/extra-bigint/wiki/roundDiv
-[rem]: https://github.com/nodef/extra-bigint/wiki/rem
-[mod]: https://github.com/nodef/extra-bigint/wiki/mod
-[modp]: https://github.com/nodef/extra-bigint/wiki/modp
-[constrain]: https://github.com/nodef/extra-bigint/wiki/constrain
-[remap]: https://github.com/nodef/extra-bigint/wiki/remap
-[lerp]: https://github.com/nodef/extra-bigint/wiki/lerp
-[isPow2]: https://github.com/nodef/extra-bigint/wiki/isPow2
-[isPow10]: https://github.com/nodef/extra-bigint/wiki/isPow10
-[prevPow2]: https://github.com/nodef/extra-bigint/wiki/prevPow2
-[prevPow10]: https://github.com/nodef/extra-bigint/wiki/prevPow10
-[nextPow2]: https://github.com/nodef/extra-bigint/wiki/nextPow2
-[nextPow10]: https://github.com/nodef/extra-bigint/wiki/nextPow10
-[log2]: https://github.com/nodef/extra-bigint/wiki/log2
-[log10]: https://github.com/nodef/extra-bigint/wiki/log10
-[sqrt]: https://github.com/nodef/extra-bigint/wiki/sqrt
-[cbrt]: https://github.com/nodef/extra-bigint/wiki/cbrt
-[root]: https://github.com/nodef/extra-bigint/wiki/root
-[properDivisors]: https://github.com/nodef/extra-bigint/wiki/properDivisors
-[aliquotSum]: https://github.com/nodef/extra-bigint/wiki/aliquotSum
-[minPrimeFactor]: https://github.com/nodef/extra-bigint/wiki/minPrimeFactor
-[maxPrimeFactor]: https://github.com/nodef/extra-bigint/wiki/maxPrimeFactor
-[primeFactors]: https://github.com/nodef/extra-bigint/wiki/primeFactors
-[primeExponentials]: https://github.com/nodef/extra-bigint/wiki/primeExponentials
-[isPrime]: https://github.com/nodef/extra-bigint/wiki/isPrime
-[gcd]: https://github.com/nodef/extra-bigint/wiki/gcd
-[lcm]: https://github.com/nodef/extra-bigint/wiki/lcm
-[factorial]: https://github.com/nodef/extra-bigint/wiki/factorial
-[binomial]: https://github.com/nodef/extra-bigint/wiki/binomial
-[multinomial]: https://github.com/nodef/extra-bigint/wiki/multinomial
-[hypot]: https://github.com/nodef/extra-bigint/wiki/hypot
-[sum]: https://github.com/nodef/extra-bigint/wiki/sum
-[product]: https://github.com/nodef/extra-bigint/wiki/product
-[median]: https://github.com/nodef/extra-bigint/wiki/median
-[modes]: https://github.com/nodef/extra-bigint/wiki/modes
-[min]: https://github.com/nodef/extra-bigint/wiki/min
-[max]: https://github.com/nodef/extra-bigint/wiki/max
-[range]: https://github.com/nodef/extra-bigint/wiki/range
-[variance]: https://github.com/nodef/extra-bigint/wiki/variance
-[arithmeticMean]: https://github.com/nodef/extra-bigint/wiki/arithmeticMean
-[geometricMean]: https://github.com/nodef/extra-bigint/wiki/geometricMean
-[harmonicMean]: https://github.com/nodef/extra-bigint/wiki/harmonicMean
-[quadriaticMean]: https://github.com/nodef/extra-bigint/wiki/quadriaticMean
-[cubicMean]: https://github.com/nodef/extra-bigint/wiki/cubicMean
+
+[is]: https://jsr.io/@nodef/extra-version/doc/~/is
+[compare]: https://jsr.io/@nodef/extra-version/doc/~/compare
+[abs]: https://jsr.io/@nodef/extra-version/doc/~/abs
+[sign]: https://jsr.io/@nodef/extra-version/doc/~/sign
+[floorDiv]: https://jsr.io/@nodef/extra-version/doc/~/floorDiv
+[ceilDiv]: https://jsr.io/@nodef/extra-version/doc/~/ceilDiv
+[roundDiv]: https://jsr.io/@nodef/extra-version/doc/~/roundDiv
+[rem]: https://jsr.io/@nodef/extra-version/doc/~/rem
+[mod]: https://jsr.io/@nodef/extra-version/doc/~/mod
+[modp]: https://jsr.io/@nodef/extra-version/doc/~/modp
+[constrain]: https://jsr.io/@nodef/extra-version/doc/~/constrain
+[remap]: https://jsr.io/@nodef/extra-version/doc/~/remap
+[lerp]: https://jsr.io/@nodef/extra-version/doc/~/lerp
+[isPow2]: https://jsr.io/@nodef/extra-version/doc/~/isPow2
+[isPow10]: https://jsr.io/@nodef/extra-version/doc/~/isPow10
+[prevPow2]: https://jsr.io/@nodef/extra-version/doc/~/prevPow2
+[prevPow10]: https://jsr.io/@nodef/extra-version/doc/~/prevPow10
+[nextPow2]: https://jsr.io/@nodef/extra-version/doc/~/nextPow2
+[nextPow10]: https://jsr.io/@nodef/extra-version/doc/~/nextPow10
+[log2]: https://jsr.io/@nodef/extra-version/doc/~/log2
+[log10]: https://jsr.io/@nodef/extra-version/doc/~/log10
+[sqrt]: https://jsr.io/@nodef/extra-version/doc/~/sqrt
+[cbrt]: https://jsr.io/@nodef/extra-version/doc/~/cbrt
+[root]: https://jsr.io/@nodef/extra-version/doc/~/root
+[properDivisors]: https://jsr.io/@nodef/extra-version/doc/~/properDivisors
+[aliquotSum]: https://jsr.io/@nodef/extra-version/doc/~/aliquotSum
+[minPrimeFactor]: https://jsr.io/@nodef/extra-version/doc/~/minPrimeFactor
+[maxPrimeFactor]: https://jsr.io/@nodef/extra-version/doc/~/maxPrimeFactor
+[primeFactors]: https://jsr.io/@nodef/extra-version/doc/~/primeFactors
+[primeExponentials]: https://jsr.io/@nodef/extra-version/doc/~/primeExponentials
+[isPrime]: https://jsr.io/@nodef/extra-version/doc/~/isPrime
+[gcd]: https://jsr.io/@nodef/extra-version/doc/~/gcd
+[lcm]: https://jsr.io/@nodef/extra-version/doc/~/lcm
+[factorial]: https://jsr.io/@nodef/extra-version/doc/~/factorial
+[binomial]: https://jsr.io/@nodef/extra-version/doc/~/binomial
+[multinomial]: https://jsr.io/@nodef/extra-version/doc/~/multinomial
+[hypot]: https://jsr.io/@nodef/extra-version/doc/~/hypot
+[sum]: https://jsr.io/@nodef/extra-version/doc/~/sum
+[product]: https://jsr.io/@nodef/extra-version/doc/~/product
+[median]: https://jsr.io/@nodef/extra-version/doc/~/median
+[modes]: https://jsr.io/@nodef/extra-version/doc/~/modes
+[min]: https://jsr.io/@nodef/extra-version/doc/~/min
+[max]: https://jsr.io/@nodef/extra-version/doc/~/max
+[range]: https://jsr.io/@nodef/extra-version/doc/~/range
+[variance]: https://jsr.io/@nodef/extra-version/doc/~/variance
+[arithmeticMean]: https://jsr.io/@nodef/extra-version/doc/~/arithmeticMean
+[geometricMean]: https://jsr.io/@nodef/extra-version/doc/~/geometricMean
+[harmonicMean]: https://jsr.io/@nodef/extra-version/doc/~/harmonicMean
+[quadriaticMean]: https://jsr.io/@nodef/extra-version/doc/~/quadriaticMean
+[cubicMean]: https://jsr.io/@nodef/extra-version/doc/~/cubicMean

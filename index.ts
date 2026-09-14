@@ -9,7 +9,7 @@
  * @param x a value
  * @returns is bigint?
  */
-export function is(x: any): x is bigint {
+export function is(x: unknown): x is bigint {
   return typeof x==="bigint";
 }
 
@@ -229,7 +229,7 @@ export function isPow10(x: bigint): boolean {
  */
 export function prevPow2(x: bigint): bigint {
   if (x<=1n) return 0n;
-  var n = x.toString(2).length;
+  const n = x.toString(2).length;
   return BigInt("0b1" + "0".repeat(n-1));
 }
 
@@ -241,7 +241,7 @@ export function prevPow2(x: bigint): bigint {
  */
 export function prevPow10(x: bigint): bigint {
   if (x<=1n) return 0n;
-  var n = x.toString(10).length;
+  const n = x.toString(10).length;
   return BigInt("1" + "0".repeat(n-1));
 }
 
@@ -253,7 +253,7 @@ export function prevPow10(x: bigint): bigint {
  */
 export function nextPow2(x: bigint): bigint {
   if (x<=0n) return 1n;
-  var n = (x-1n).toString(2).length;
+  const n = (x-1n).toString(2).length;
   return BigInt("0b1" + "0".repeat(n));
 }
 
@@ -265,7 +265,7 @@ export function nextPow2(x: bigint): bigint {
  */
 export function nextPow10(x: bigint): bigint {
   if (x<=0n) return 1n;
-  var n = (x-1n).toString(10).length;
+  const n = (x-1n).toString(10).length;
   return BigInt("1" + "0".repeat(n));
 }
 
@@ -276,7 +276,7 @@ export function nextPow10(x: bigint): bigint {
  * @returns log₂(x)
  */
 export function log2(x: bigint): bigint {
-  var n = x.toString(2).length - 1;
+  const n = x.toString(2).length - 1;
   return x<=0n? 0n : BigInt(n);
 }
 
@@ -287,7 +287,7 @@ export function log2(x: bigint): bigint {
  * @returns log₁₀(x)
  */
 export function log10(x: bigint): bigint {
-  var n = x.toString().length - 1;
+  const n = x.toString().length - 1;
   return x<=0n? 0n : BigInt(n);
 }
 
@@ -308,14 +308,14 @@ export function log10(x: bigint): bigint {
  * @param x a bigint
  * @returns √x
  */
-export function sqrt(x: bigint): bigint {
+export function sqrt(x: bigint): bigint | null {
   if (x===0n) return 0n;
   return x>0n? sqrtPos(x) : null;
 }
 
 function sqrtPos(x: bigint): bigint {
-  var a = 1n << (log2(x)/2n + 1n);  // initial guess
-  var b = 1n + a;
+  let a = 1n << (log2(x)/2n + 1n);  // initial guess
+  let b = 1n + a;
   while (a<b) {
     b = a;
     a = (b + x/b)/2n;
@@ -329,7 +329,7 @@ function sqrtPos(x: bigint): bigint {
  * @param x a bigint
  * @returns ³√x
  */
-export function cbrt(x: bigint): bigint {
+export function cbrt(x: bigint): bigint | null {
   return root(x, 3n);
 }
 
@@ -340,15 +340,15 @@ export function cbrt(x: bigint): bigint {
  * @param n nth root (1n)
  * @returns ⁿ√x
  */
-export function root(x: bigint, n: bigint=1n): bigint {
+export function root(x: bigint, n: bigint=1n): bigint | null {
   if (x===0n) return 0n;
   else if (x>0n) return rootPos(x, n);
   return n % 2n!==0n?  -rootPos(-x, n) : null;
 }
 
 function rootPos(x: bigint, n: bigint): bigint {
-  var a = 1n << (log2(x)/n + 1n);  // initial guess
-  var b = 1n + a, m = n - 1n;
+  let a = 1n << (log2(x)/n + 1n);  // initial guess
+  let b = 1n + a; const m = n - 1n;
   if (a===2n) return 1n;
   while (a<b) {
     b = a;
@@ -369,8 +369,8 @@ function rootPos(x: bigint, n: bigint): bigint {
  * @returns proper divisors (factors)
  */
 export function properDivisors(x: bigint): bigint[] {
-  var x = abs(x), a = [];
-  for (var i=1n; i<x; i++)
+  x = abs(x); const a = [];
+  for (let i=1n; i<x; i++)
     if (x % i===0n) a.push(i);
   return a;
 }
@@ -385,8 +385,8 @@ export {properDivisors as aliquotParts};
  * @returns Σdᵢ | dᵢ is a divisor of x and ≠x
  */
 export function aliquotSum(x: bigint): bigint {
-  var x = abs(x), a = 0n;
-  for (var i=1n; i<x; i++)
+  x = abs(x); let a = 0n;
+  for (let i=1n; i<x; i++)
     if (x % i===0n) a += i;
   return a;
 }
@@ -398,7 +398,7 @@ export function aliquotSum(x: bigint): bigint {
  * @returns least prime factor
  */
 export function minPrimeFactor(x: bigint): bigint {
-  var x = abs(x);
+  x = abs(x);
   // 1. LPF of 2, 3 is the number itself.
   if (x<=1n) return 0n;
   if (x<=3n) return x;
@@ -406,7 +406,7 @@ export function minPrimeFactor(x: bigint): bigint {
   if (x % 2n===0n) return 2n;
   if (x % 3n===0n) return 3n;
   // 3. LPF can be 6k-1 or 6k+1.
-  for (var i=6n, I=sqrt(x)+1n; i<=I; i+=6n) {
+  for (let i=6n, I=(sqrt(x) as bigint)+1n; i<=I; i+=6n) {
     if (x % (i-1n)===0n) return i-1n;
     if (x % (i+1n)===0n) return i+1n;
   }
@@ -422,7 +422,7 @@ export {minPrimeFactor as leastPrimeFactor};
  * @returns greatest prime factor
  */
 export function maxPrimeFactor(x: bigint): bigint {
-  var x = abs(x), a = 0n;
+  x = abs(x); let a = 0n;
   // 1. GPF of 2, 3 is the number itself.
   if (x<=1n) return 0n;
   if (x<=3n) return x;
@@ -432,7 +432,7 @@ export function maxPrimeFactor(x: bigint): bigint {
   for (; x % 3n===0n; a=3n)
     x /= 3n;
   // 3. Remove factors 6k-1, 6k+1.
-  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+  for (let i=6n, I=(sqrt(x) as bigint)+1n; x>1n && i<=I; i+=6n) {
     for (; x % (i-1n)==0n; a=i-1n)
       x /= i-1n;
     for (; x % (i+1n)==0n; a=i+1n)
@@ -452,14 +452,14 @@ export {maxPrimeFactor as greatestPrimeFactor};
  * @returns [f₀, f₁, ...] | fᵢ divides x and is prime
  */
 export function primeFactors(x: bigint): bigint[] {
-  var x = abs(x), a = [];
+  x = abs(x); const a: bigint[] = [];
   if (x<=1n) return [];
   if (x<=3n) return [x];
   // 2. Try factors 2, 3.
   x = pushPrimeFactorTo$(a, x, 2n);
   x = pushPrimeFactorTo$(a, x, 3n);
   // 3. Try factors 6k-1, 6k+1.
-  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+  for (let i=6n, I=(sqrt(x) as bigint)+1n; x>1n && i<=I; i+=6n) {
     x = pushPrimeFactorTo$(a, x, i-1n);
     x = pushPrimeFactorTo$(a, x, i+1n);
   }
@@ -485,14 +485,14 @@ function pushPrimeFactorTo$(a: bigint[], x: bigint, f: bigint): bigint {
  * @returns [[f₀, e₀], [f₁, e₁], ...] | fᵢ is a prime factor of x and eᵢ is its exponent
  */
 export function primeExponentials(x: bigint): [bigint, bigint][] {
-  var x = abs(x), a = [];
+  x = abs(x); const a: [bigint, bigint][] = [];
   if (x<=1n) return [];
   if (x<=3n) return [[x, 1n]];
   // 2. Try factors 2, 3.
   x = pushPrimeExponentialTo$(a, x, 2n);
   x = pushPrimeExponentialTo$(a, x, 3n);
   // 3. Try factors 6k-1, 6k+1.
-  for (var i=6n, I=sqrt(x)+1n; x>1n && i<=I; i+=6n) {
+  for (let i=6n, I=(sqrt(x) as bigint)+1n; x>1n && i<=I; i+=6n) {
     x = pushPrimeExponentialTo$(a, x, i-1n);
     x = pushPrimeExponentialTo$(a, x, i+1n);
   }
@@ -502,7 +502,7 @@ export function primeExponentials(x: bigint): [bigint, bigint][] {
 
 function pushPrimeExponentialTo$(a: [bigint, bigint][], x: bigint, f: bigint): bigint {
   if (x % f!==0n) return x;
-  var e = 0n;
+  let e = 0n;
   do {
     x /= f; ++e;
   } while (x % f===0n);
@@ -531,8 +531,8 @@ export function isPrime(x: bigint): boolean {
  * @returns gcd(x₁, x₂, ...)
  */
 export function gcd(...xs: bigint[]): bigint {
-  var a = xs[0] || 1n;
-  for(var i=1, I=xs.length; i<I; i++)
+  let a = xs[0] || 1n;
+  for(let i=1, I=xs.length; i<I; i++)
     a = gcdPair(a, xs[i]);
   return a;
 }
@@ -541,7 +541,7 @@ export {gcd as hcf};
 // Find the greatest common divisor of a pair of bigints.
 function gcdPair(x: bigint, y: bigint): bigint {
   while (y!==0n) {
-    var t = y;
+    const t = y;
     y = x % y;
     x = t;
   }
@@ -557,8 +557,8 @@ function gcdPair(x: bigint, y: bigint): bigint {
  * @returns lcm(x₁, x₂, ...)
  */
 export function lcm(...xs: bigint[]): bigint {
-  var a = xs[0] || 1n;
-  for (var i=1, I=xs.length; i<I; i++)
+  let a = xs[0] || 1n;
+  for (let i=1, I=xs.length; i<I; i++)
       a = a*xs[i] / gcdPair(a, xs[i]);
   return a;
 }
@@ -577,8 +577,9 @@ export function lcm(...xs: bigint[]): bigint {
  * @returns P(n, k); k=0: n!, k>0: n!/k!
  */
 export function factorial(n: bigint, k: bigint=0n): bigint {
+  let a = 1n;
   if (n<0n) return 0n;
-  for (var i=k+1n, a=1n; i<=n; i++)
+  for (let i=k+1n; i<=n; i++)
     a *= i;
   return a;
 }
@@ -598,7 +599,8 @@ export function binomial(n: bigint, k: bigint): bigint {
   if (n<0n) return ((-1n)**k)*binomial(-n, k);
   // 2. Take advantage of symmetry
   k = k>n-k? n-k:k;
-  for (var a=1n, b=1n, i=1n; i<=k; i++, n--) {
+  let a = 1n, b = 1n;
+  for (let i=1n; i<=k; i++, n--) {
     a *= n;
     b *= i;
   }
@@ -614,8 +616,8 @@ export function binomial(n: bigint, k: bigint): bigint {
  * @returns n!/(k₁!k₂!...) | n=sum(kᵢ)
  */
 export function multinomial(...ks: bigint[]): bigint {
-  var n = sum(...ks), a = 1n, b = 1n;
-  for (var i=0, j=0n, I=ks.length; i<I;) {
+  let n = sum(...ks), a = 1n, b = 1n;
+  for (let i=0, j=0n, I=ks.length; i<I;) {
     if (j<=0n) j = ks[i++];
     else { a *= n--; b*= j--; }
   }
@@ -635,10 +637,10 @@ export function multinomial(...ks: bigint[]): bigint {
  * @returns √(x² + y² + z²)
  */
 export function hypot(...xs: bigint[]): bigint {
-  var a = 0n;
-  for (var x of xs)
+  let a = 0n;
+  for (const x of xs)
     a += x*x;
-  return sqrt(a);
+  return sqrt(a) as bigint;
 }
 
 
@@ -653,8 +655,8 @@ export function hypot(...xs: bigint[]): bigint {
  * @returns Σxᵢ
  */
 export function sum(...xs: bigint[]): bigint {
-  var a = 0n;
-  for (var x of xs)
+  let a = 0n;
+  for (const x of xs)
     a += x;
   return a;
 }
@@ -666,8 +668,8 @@ export function sum(...xs: bigint[]): bigint {
  * @returns ∏xᵢ
  */
 export function product(...xs: bigint[]): bigint {
-  var a = 1n;
-  for (var x of xs)
+  let a = 1n;
+  for (const x of xs)
     a *= x;
   return a;
 }
@@ -681,7 +683,7 @@ export function product(...xs: bigint[]): bigint {
 export function median(...xs: bigint[]): bigint {
   if (xs.length===0) return 0n;
   xs.sort(compare);
-  var i = xs.length>>1;
+  const i = xs.length>>1;
   if ((xs.length & 1)===1) return xs[i];
   return (xs[i-1] + xs[i])/2n;
 }
@@ -696,15 +698,15 @@ export function median(...xs: bigint[]): bigint {
  */
 export function modes(...xs: bigint[]): bigint[] {
   xs.sort(compare);
-  var r = maxRepeat(xs);
+  const r = maxRepeat(xs);
   return getRepeats(xs, r);
 }
 // - https://en.wikipedia.org/wiki/Mode_(statistics)
 
 // Get the maximum number of times any bigint has repeated in a sorted array.
 function maxRepeat(xs: bigint[]): number {
-  var count = Math.min(xs.length, 1), max = count;
-  for (var i=1, I=xs.length; i<I; i++) {
+  let count = Math.min(xs.length, 1), max = count;
+  for (let i=1, I=xs.length; i<I; i++) {
     if (xs[i-1]===xs[i]) count++;
     else { max = Math.max(max, count); count = 1; }
   }
@@ -713,8 +715,8 @@ function maxRepeat(xs: bigint[]): number {
 
 // Get the numbers which have been repeated atleast given number of times.
 function getRepeats(xs: bigint[], r: number): bigint[] {
-  var a: bigint[] = []; r--;
-  for (var i=0, I=xs.length-r; i<I; i++)
+  const a: bigint[] = []; r--;
+  for (let i=0, I=xs.length-r; i<I; i++)
     if (xs[i]===xs[i+r]) a.push(xs[i+=r]);
   return a;
 }
@@ -727,8 +729,8 @@ function getRepeats(xs: bigint[], r: number): bigint[] {
  */
 export function min(...xs: bigint[]): bigint {
   if (xs.length===0) return 0n;
-  var a = xs[0];
-  for (var x of xs)
+  let a = xs[0];
+  for (const x of xs)
     a = x<a? x : a;
   return a;
 }
@@ -741,8 +743,8 @@ export function min(...xs: bigint[]): bigint {
  */
 export function max(...xs: bigint[]): bigint {
   if (xs.length===0) return 0n;
-  var a = xs[0];
-  for (var x of xs)
+  let a = xs[0];
+  for (const x of xs)
     a = x>a? x : a;
   return a;
 }
@@ -755,8 +757,8 @@ export function max(...xs: bigint[]): bigint {
  */
 export function range(...xs: bigint[]): [bigint, bigint] {
   if (xs.length===0) return [0n, 0n];
-  var a = xs[0], b = a;
-  for (var x of xs) {
+  let a = xs[0], b = a;
+  for (const x of xs) {
     a = x<a? x : a;
     b = x>b? x : b;
   }
@@ -771,8 +773,8 @@ export function range(...xs: bigint[]): [bigint, bigint] {
  */
 export function variance(...xs: bigint[]): bigint {
   if (xs.length===0) return 0n;
-  var m = arithmeticMean(...xs), a = 0n;
-  for (var x of xs)
+  const m = arithmeticMean(...xs); let a = 0n;
+  for (const x of xs)
     a += (x-m)**2n;
   return a/BigInt(xs.length);
 }
@@ -790,7 +792,7 @@ export function variance(...xs: bigint[]): bigint {
  * @returns µ = (Σxᵢ)/n | n = size(xs)
  */
 export function arithmeticMean(...xs: bigint[]): bigint {
-  var n = BigInt(xs.length);
+  const n = BigInt(xs.length);
   return sum(...xs)/n;
 }
 export {arithmeticMean as mean};
@@ -801,8 +803,8 @@ export {arithmeticMean as mean};
  * @param xs bigints
  * @returns ⁿ√(∏xᵢ) | n = size(xs)
  */
-export function geometricMean(...xs: bigint[]): bigint {
-  var n = BigInt(xs.length);
+export function geometricMean(...xs: bigint[]): bigint | null {
+  const n = BigInt(xs.length);
   return root(product(...xs), n);
 }
 
@@ -813,9 +815,9 @@ export function geometricMean(...xs: bigint[]): bigint {
  * @returns n/Σ(1/xᵢ) | n = size(xs)
  */
 export function harmonicMean(...xs: bigint[]): bigint {
-  var n = BigInt(xs.length);
-  var p = product(...xs), q = 0n;
-  for (var x of xs)
+  const n = BigInt(xs.length);
+  const p = product(...xs); let q = 0n;
+  for (const x of xs)
     q += p/x;
   return n*p/q;
 }
@@ -827,11 +829,11 @@ export function harmonicMean(...xs: bigint[]): bigint {
  * @returns √(Σxᵢ²)/n | n = size(xs)
  */
 export function quadriaticMean(...xs: bigint[]): bigint {
-  var n = BigInt(xs.length);
-  var a = 0n;
-  for (var x of xs)
+  const n = BigInt(xs.length);
+  let a = 0n;
+  for (const x of xs)
     a += x*x;
-  return sqrt(a/n);
+  return sqrt(a/n) as bigint;
 }
 export {quadriaticMean as rootMeanSquare};
 
@@ -841,10 +843,10 @@ export {quadriaticMean as rootMeanSquare};
  * @param xs bigints
  * @returns ³√(Σxᵢ³)/n | n = size(xs)
  */
-export function cubicMean(...xs: bigint[]): bigint {
-  var n = BigInt(xs.length);
-  var a = 0n;
-  for (var x of xs)
+export function cubicMean(...xs: bigint[]): bigint | null {
+  const n = BigInt(xs.length);
+  let a = 0n;
+  for (const x of xs)
     a += x**3n;
   return cbrt(a/n);
 }
